@@ -10,7 +10,7 @@ export default function Index() {
       price:78
     },
     {
-      productName:"Aritzia - Boyfriend Sweat Pants",
+      productName:"Aritzia",
       price:81.23
     }
   ]
@@ -23,17 +23,14 @@ export default function Index() {
         <Text>Go to Calendar</Text>
       </TouchableOpacity>
 
-      {/* <Button 
-      title="Budget Categories"
-      onPress={() => router.push('/components/budgetCategories')}
-      /> */}
       <BudgetCategories 
         categoryName={name}
-        mainBgColor='hellop'
-        accentBgColor='hello'
-        total="$159.23"
-        progress="63.7%"
-        products={items}
+        mainBgColor='#DDBAD9'
+        accentBgColor='#9B8098'
+        icon='🛒'
+        total={159.23}
+        progress={63.7}
+        items={items}
       />
      
     </View>
