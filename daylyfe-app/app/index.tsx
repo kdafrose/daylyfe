@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
-import BudgetCategories   from "../components/BudgetCategories";
+import BudgetCategories from "@/components/BudgetCategories";
 import { router } from "expo-router";
 export default function Index() {
 
@@ -19,9 +19,6 @@ export default function Index() {
     <View>
       <Text style={styles.container} >Getting started with React Native!!</Text>
       <Text style={styles.nameContainer}>My name is {name}</Text>
-      <TouchableOpacity onPress={() => router.push('/components/calendar')}>
-        <Text>Go to Calendar</Text>
-      </TouchableOpacity>
 
       <BudgetCategories 
         categoryName={name}

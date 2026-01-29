@@ -67,7 +67,7 @@ const BudgetCategories:FC<BudgetCategoriesProps> = ({categoryName, mainBgColor, 
                 />
                 <SerifText style ={{fontSize:24, marginLeft:12}}>{categoryName}</SerifText>
             </View>
-            <View>
+            <View style={{alignItems:'center', justifyContent:'center'}}>
                 <SerifText style={[styles.progressPercentage, {color:accentBgColor}]}>{progress}%</SerifText>
                 <SerifText style={styles.totalAmount}>${total}</SerifText>
             </View>

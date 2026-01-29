@@ -1,5 +1,7 @@
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { router } from "expo-router";
+
 
 const calendar = () => {
   // flatlist is better on React Native over mapping to build a list
@@ -28,6 +30,9 @@ const calendar = () => {
           return <Text style={style.weeks} >{item.day}</Text> 
          }}
          />
+         <TouchableOpacity onPress={() => router.push('/CalendarStack/addCalendarEvent')}>
+          <Text>Add Event</Text>
+        </TouchableOpacity>
       </View>
   );
 }
