@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { router } from "expo-router";
+import ScreenLayout from '@/components/ScreenLayout';
 
 
 const calendar = () => {
@@ -30,9 +31,14 @@ const calendar = () => {
           return <Text style={style.weeks} >{item.day}</Text> 
          }}
          />
-         <TouchableOpacity onPress={() => router.push('/CalendarStack/addCalendarEvent')}>
+        <TouchableOpacity onPress={() => router.push('/CalendarStack/addCalendarEvent')}>
           <Text>Add Event</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => router.push('/CalendarStack/addCalendarTask')}>
+          <Text>Add Task</Text>
+        </TouchableOpacity>
+
       </View>
   );
 }

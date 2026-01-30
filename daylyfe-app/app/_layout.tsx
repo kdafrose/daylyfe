@@ -1,7 +1,7 @@
-import { Stack } from "expo-router";
 import {useFonts} from 'expo-font'
 import { Drawer } from 'expo-router/drawer';
-import { StackScreen } from "react-native-screens";
+import { ScrollView } from 'react-native-gesture-handler';
+import {View, Text} from 'react-native'
 
 
 export default function RootLayout() {
@@ -14,7 +14,8 @@ export default function RootLayout() {
 
     return (
       <Drawer screenOptions={{
-        headerShown:false
+        headerShown:false,
+        drawerPosition:'right'
         }}>
 
         <Drawer.Screen 
@@ -30,6 +31,14 @@ export default function RootLayout() {
           options={{ 
             drawerLabel:'Calendar',
             title:'Calendar',
+            headerShown:true
+          }}
+        />
+         <Drawer.Screen 
+          name="Calculator"
+          options={{ 
+            drawerLabel:'Calculator',
+            title:'Calculator',
             headerShown:true
           }}
         />
