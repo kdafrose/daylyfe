@@ -1,14 +1,21 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet} from "react-native";
 import React from "react";
 import Footer from "@/components/Footer";
+import GeneralAddMenu from "./GeneralAddMenu";
 
 export default function ScreenLayout({ children }: { children: React.ReactNode }) {
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
         {children}
       </View>
-      <Footer />
+
+
+      <View style={styles.bottomContainer}>
+        <GeneralAddMenu />
+        <Footer />
+      </View>
     </View>
   );
 }
@@ -16,8 +23,12 @@ export default function ScreenLayout({ children }: { children: React.ReactNode }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:"#F8E1CD",
   },
   content: {
     flex: 1,
+  },
+  bottomContainer:{
+    position:'relative'
   },
 });

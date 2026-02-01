@@ -21,7 +21,8 @@ const calendar = () => {
     ];
 
   return (
-      <View >
+    <View style={{position:'relative'}}>
+      <View style={style.calendarBox}>
         <FlatList
           data={daysOfWeek}
           horizontal
@@ -31,6 +32,7 @@ const calendar = () => {
           return <Text style={style.weeks} >{item.day}</Text> 
          }}
          />
+         <View style={{flexDirection:'row'}}>
         <TouchableOpacity onPress={() => router.push('/CalendarStack/addCalendarEvent')}>
           <Text>Add Event</Text>
         </TouchableOpacity>
@@ -39,14 +41,35 @@ const calendar = () => {
           <Text>Add Task</Text>
         </TouchableOpacity>
 
+         </View>
       </View>
+
+      <View style={style.dailysBox}>
+        <Text>HEllo</Text>
+      </View>
+
+    </View>
   );
 }
 
 const style = StyleSheet.create({
+  calendarBox:{
+    backgroundColor:'#F6BFBF',
+    height:400,
+  },
+  dailysBox:{
+    backgroundColor:'#F8E1CD',
+    borderRadius:30,
+    height:370,
+
+    position: 'absolute',
+    top: 370,        // 👈 controls overlap amount
+    left: 0,
+    right: 0,
+  },
   weeks:{
-    marginHorizontal:20,
-  }
+    marginHorizontal:15,
+  },
 })
 
 export default calendar;

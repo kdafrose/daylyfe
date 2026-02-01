@@ -31,17 +31,17 @@ const Footer = () => {
                         name="tint"
                         size={25}
                         solid={false}
+                        color="#9ADCFF"
                         />
-                    <Text>Water</Text>
+                    <SerifText style={{fontSize:17}}>100%</SerifText>
                     </View>
 
                     <View style={styles.footerIconsLeft}>
                         <FontAwesome5
-                        name="shoe-prints"
-                        style={{ transform: [{ rotate: '270deg' }] }}
+                        name="walking"
                         size={25}
                         />
-                        <Text>Steps</Text>
+                        <SerifText style={{fontSize:16}}>3463</SerifText>
                     </View>
             </View>
         </View>
@@ -54,7 +54,8 @@ export default Footer;
 const styles = StyleSheet.create({
     container:{
         padding:18,
-        marginBottom:8,
+        paddingBottom:24,
+        backgroundColor:'#F8E1CD'
     },
     footerContentBox:{
         flexDirection:'row',
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     },
     footerIconsLeft:{
         alignItems:'center',
-        justifyContent:'flex-end',
+        justifyContent:'center',
         height:40
     },
     todayButton:{
