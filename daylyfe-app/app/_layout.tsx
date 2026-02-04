@@ -1,23 +1,31 @@
-import {useFonts} from 'expo-font'
+import React from 'react';
 import { Drawer } from 'expo-router/drawer';
-import { ScrollView } from 'react-native-gesture-handler';
-import {View, Text} from 'react-native'
+import { useFonts } from 'expo-font';
 
 
 export default function RootLayout() {
   {/**loading the fonts */}
-    const [fontsLoaded] = useFonts({
-        "DMSerifDisplay-Regular": require("../assets/fonts/DMSerifDisplay-Regular.ttf"),
-      });
-
-    if (!fontsLoaded) return null;
+  const [fontsLoaded] = useFonts({
+      "DMSerifDisplay-Regular": require("../assets/fonts/DMSerifDisplay-Regular.ttf"),
+    });
+  if (!fontsLoaded) return null;
 
     return (
-      <Drawer screenOptions={{
+      <Drawer
+      initialRouteName='index'
+      screenOptions={{
         headerShown:false,
-        drawerPosition:'right'
-        }}>
-
+        headerTintColor:'#000',
+        drawerPosition:'right',
+        drawerStyle:{
+          backgroundColor:'#F6BFBF',
+        },
+        headerStyle:{
+          backgroundColor:'#F8E1CD',
+          shadowColor:'transparent',
+        }
+        }}
+      >
         <Drawer.Screen 
           name="index"
           options={{ 
@@ -27,11 +35,15 @@ export default function RootLayout() {
           }}
         />
         <Drawer.Screen 
-          name="CalendarStack"
+          name="(CalendarStack)"
           options={{ 
             drawerLabel:'Calendar',
             title:'Calendar',
-            headerShown:true
+            headerShown:false,
+            headerStyle:{
+              backgroundColor:'#F8E1CD',
+              shadowColor:'transparent'
+            },
           }}
         />
          <Drawer.Screen 
@@ -42,7 +54,6 @@ export default function RootLayout() {
             headerShown:true
           }}
         />
-
       </Drawer>
   );
 }

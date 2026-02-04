@@ -1,9 +1,11 @@
 import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import BudgetCategories from "@/components/BudgetCategories";
-import { router } from "expo-router";
-import ScreenLayout from "@/components/ScreenLayout";
 
-export default function Index() {
+//Footer and Layouts
+import ScreenLayout from "@/components/ScreenLayout";
+import GeneralAddMenu from "@/components/GeneralAddMenu";
+
+export default function index() {
 
   const name = 'Shopping';
   const items = [
@@ -19,21 +21,21 @@ export default function Index() {
 
   return (
     <ScreenLayout>
-      <View>
-        <Text style={styles.container} >Getting started with React Native!!</Text>
-        <Text style={styles.nameContainer}>My name is {name}</Text>
+    <View>
+      <Text style={styles.container} >Getting started with React Native!!</Text>
+      <Text style={styles.nameContainer}>My name is {name}</Text>
 
-        <BudgetCategories 
-          categoryName={name}
-          mainBgColor='#DDBAD9'
-          accentBgColor='#9B8098'
-          icon='🛒'
-          total={159.23}
-          progress={63.7}
-          items={items}
-        />
-      
-      </View>
+      <BudgetCategories 
+        categoryName={name}
+        mainBgColor='#DDBAD9'
+        accentBgColor='#9B8098'
+        icon='🛒'
+        total={159.23}
+        progress={63.7}
+        items={items}
+      />
+    </View>
+    <GeneralAddMenu />
     </ScreenLayout>
   );
 }

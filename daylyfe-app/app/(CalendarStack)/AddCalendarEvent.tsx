@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const addCalendarTask = () => {
+const AddCalendaraEvent = () => {
   return (
     <View>
-      <Text>addCalendarTask Page</Text>
+      <Text>addCalendaraEvent Page</Text>
     </View>
   )
 }
 
-export default addCalendarTask
+export default AddCalendaraEvent

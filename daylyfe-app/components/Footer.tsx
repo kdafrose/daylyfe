@@ -1,17 +1,24 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, {FC} from 'react'
+
 import SerifText from './SerifText'
-import { router } from 'expo-router'
+import { useRouter, usePathname} from 'expo-router'
 import { FontAwesome5 } from '@expo/vector-icons';
 
 const Footer = () => {
+  const router = useRouter();
+  const path = usePathname();
+  console.log(path)
+
   return (
     <View style={styles.container}>
         <View style={styles.footerContentBox}>
             <View style={styles.footerContent}>
                 <TouchableOpacity 
                 style={styles.todayButton}
-                onPress={()=>router.push('/CalendarStack/dailyTodays')}
+                onPress={()=> {
+                    router.push('/DailyTodays') 
+                }}
                 >
                     <SerifText style={{fontSize:14}}>today</SerifText>
                 </TouchableOpacity>

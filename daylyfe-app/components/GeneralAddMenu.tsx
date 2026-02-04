@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     container:{
         position: 'absolute',
         right: 38,
-        bottom: 70, // height of footer\
+        bottom: 0, // height of footer\
         marginVertical:8,
         justifyContent:'space-evenly',
     },
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     modalBox:{
         position:'absolute',
         right: 38,
-        bottom: 64, // height of footer\
+        bottom: 65, // height of footer\
         marginVertical:8,
         justifyContent:'space-evenly',
         height:240
