@@ -11,8 +11,8 @@ const alertOptions = ["None", "On Event", "15 minute before", "30 minutes before
 const AddCalendaraEvent = () => {
   // event data to the db
   const [eventTitle, setEventTitle] = useState('');
-  const [eventNotes, setEventNotes] = useState('')
-  const [chosenColor, setChosenColor] = useState('#DDBAD9');
+  const [eventNotes, setEventNotes] = useState('');
+  const [chosenColor, setChosenColor] = useState('#DDBAD9'); 
   const [chosenRepeat, setChosenRepeat] = useState('Never');
   const [chosenAlert,setChosenAlert] = useState('None');
   const [selectedStartDate, setSelectedStartDate] = useState<string | null>('YYYY-MM-DD at HH:MM AM/PM');
@@ -22,6 +22,15 @@ const AddCalendaraEvent = () => {
   const [openAlertMenu, setOpenAlertMenu] = useState(false);
   const [showStartDatePicker, setShowStartDatePicker] = useState(false);
   const [showEndDatePicker, setShowEndDatePicker] = useState(false);
+  const [showReviewEvent, setShowReviewEvent] = useState(false);
+
+  function checkEvent(){
+    // if(eventTitle === '' && selectedEndDate === 'YYYY-MM-DD at HH:MM AM/PM' && selectedStartDate === 'YYYY-MM-DD at HH:MM AM/PM'){
+    //   return; //dont save 
+    // }
+
+
+  }
 
 
   return (
@@ -38,7 +47,8 @@ const AddCalendaraEvent = () => {
           <TextInput 
           onChangeText={setEventNotes}
           placeholder='Notes...'
-          value={eventTitle}
+          numberOfLines={2}
+          value={eventNotes}
           style={styles.textStyle}
           />
           <View style={styles.horizontalLine}></View>
@@ -203,6 +213,51 @@ const AddCalendaraEvent = () => {
           </Modal>
         </View>
       </View>
+      <View style={styles.saveBox}>
+        <TouchableOpacity 
+        onPress={() => setShowReviewEvent(true)}
+        style={styles.saveButton}
+        >
+          <SerifText style={{color:'white', fontSize:16}}>Save</SerifText>
+        </TouchableOpacity>
+      </View>
+      <View >
+        <Modal
+        transparent
+        animationType='fade'
+        visible={showReviewEvent}
+        onRequestClose={() => setShowReviewEvent(false)}
+        >
+          <View style={{flex:1, alignItems:'center', top:140}}>
+            <View style={styles.reviewEventBox}>
+              <View style={{padding:16}}>
+                <SerifText style ={{fontSize:20, paddingBottom:16, textAlign:'center'}}>Event Preview</SerifText>
+                <View style={[styles.colorButton, {backgroundColor:chosenColor}]}></View>
+                <SerifText style ={styles.reviewContent}>Event: {eventTitle}</SerifText>
+                <SerifText style ={styles.reviewContent}>{eventNotes}</SerifText>
+                <SerifText style ={styles.reviewContent}>Start: {selectedStartDate}</SerifText>
+                <SerifText style ={styles.reviewContent}>End: {selectedEndDate}</SerifText>
+                <SerifText style ={styles.reviewContent}>Repeat: {chosenRepeat}</SerifText>
+                <SerifText style ={styles.reviewContent}>Alert: {chosenAlert}</SerifText>
+              </View>
+              <View style={styles.reviewButtonsRow}>
+                <TouchableOpacity
+                onPress={()=> checkEvent()}
+                style={styles.saveButton}
+                >
+                  <SerifText>Save</SerifText>
+                </TouchableOpacity>
+                <TouchableOpacity 
+                onPress={() => setShowReviewEvent(false)}
+                style={[styles.saveButton, {backgroundColor:'rgba(138, 148, 166, 0.4)', width:80}]}
+                >
+                  <SerifText>Go Back</SerifText>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
+      </View>
     </View>
   )
 }
@@ -272,7 +327,35 @@ const styles = StyleSheet.create({
     marginVertical:6,
     paddingVertical:6,
     borderRadius:20
-  }
+  },
+  saveButton:{
+    height:30,
+    width:60,
+    backgroundColor:'#FF89A0',
+    borderRadius:20,
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  saveBox:{
+    padding:12, 
+    marginVertical:24,
+    alignItems:'center'
+  },
+  reviewEventBox:{
+    backgroundColor: 'rgba(255,255,255,0.99)',
+    height:'50%',
+    width:350,
+    borderRadius:20
+  },
+  reviewContent:{
+    paddingVertical:4,
+    fontSize:18
+  },
+  reviewButtonsRow:{
+    flexDirection:'row',
+    justifyContent:'space-evenly',
+    top:40
+  },
 })
 
 export default AddCalendaraEvent;
