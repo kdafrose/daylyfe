@@ -9,8 +9,9 @@ const repeatOptions = ["Never", "Daily", "Weekly", "Monthly", "Yearly"]
 const alertOptions = ["None", "On Event", "15 minute before", "30 minutes before", "1 hour before", "2 hours before", "1 day before"]
 
 const AddCalendaraEvent = () => {
-  // event options
+  // event data to the db
   const [eventTitle, setEventTitle] = useState('');
+  const [eventNotes, setEventNotes] = useState('')
   const [chosenColor, setChosenColor] = useState('#DDBAD9');
   const [chosenRepeat, setChosenRepeat] = useState('Never');
   const [chosenAlert,setChosenAlert] = useState('None');
@@ -19,7 +20,8 @@ const AddCalendaraEvent = () => {
 
   // modal states
   const [openAlertMenu, setOpenAlertMenu] = useState(false);
-  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showStartDatePicker, setShowStartDatePicker] = useState(false);
+  const [showEndDatePicker, setShowEndDatePicker] = useState(false);
 
 
   return (
@@ -33,7 +35,12 @@ const AddCalendaraEvent = () => {
           value={eventTitle}
           style={styles.titleStyle}
           />
-          <SerifText style={{fontSize:18, color:'#8A94A6'}}>Notes...</SerifText>
+          <TextInput 
+          onChangeText={setEventNotes}
+          placeholder='Notes...'
+          value={eventTitle}
+          style={styles.textStyle}
+          />
           <View style={styles.horizontalLine}></View>
         </View>
         {/**Start */}
@@ -41,18 +48,18 @@ const AddCalendaraEvent = () => {
           <View style={styles.sectionRow}>
             <SerifText style={styles.textStyle}>Start</SerifText>
             <TouchableOpacity
-            onPress={() => setShowDatePicker(true)}
+            onPress={() => setShowStartDatePicker(true)}
             >
               <SerifText style={styles.dateButton}>{selectedStartDate}</SerifText>
             </TouchableOpacity>
             <Modal
             transparent
-            visible={showDatePicker}
-            onRequestClose={() => setShowDatePicker(false)}
+            visible={showStartDatePicker}
+            onRequestClose={() => setShowStartDatePicker(false)}
             >
               <Pressable 
               style={styles.opacityBox}
-              onPress={() => setShowDatePicker(false)}
+              onPress={() => setShowStartDatePicker(false)}
               />
               <DatePicker 
               onDateChange={(dateString)=> {
@@ -68,19 +75,19 @@ const AddCalendaraEvent = () => {
         <View>
           <View style={styles.sectionRow}>
             <SerifText style={styles.textStyle}>End</SerifText>
-                        <TouchableOpacity
-            onPress={() => setShowDatePicker(true)}
+            <TouchableOpacity
+            onPress={() => setShowEndDatePicker(true)}
             >
               <SerifText style={styles.dateButton}>{selectedEndDate}</SerifText>
             </TouchableOpacity>
             <Modal
             transparent
-            visible={showDatePicker}
-            onRequestClose={() => setShowDatePicker(false)}
+            visible={showEndDatePicker}
+            onRequestClose={() => setShowEndDatePicker(false)}
             >
               <Pressable 
               style={styles.opacityBox}
-              onPress={() => setShowDatePicker(false)}
+              onPress={() => setShowEndDatePicker(false)}
               />
               <DatePicker 
               onDateChange={(dateString)=> {
