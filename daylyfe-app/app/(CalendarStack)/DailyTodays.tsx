@@ -1,13 +1,42 @@
-import { View, StyleSheet, ScrollView, TouchableOpacity, TextInput, } from 'react-native'
-import { useState } from 'react';
-import { AdvancedCheckbox } from 'react-native-advanced-checkbox';
+import { View, StyleSheet, ScrollView, TouchableOpacity, TextInput, FlatList} from 'react-native'
+import Event from '@/components/DailyComponents/Event';
+import Task from '@/components/DailyComponents/Task';
 import { FontAwesome6 } from '@expo/vector-icons'
 import SerifText from '@/components/SerifText'
-import React from 'react'
+import React, {useState} from 'react'
 import Header from '@/components/Header'
 
+const exampleData = [ // these will be sorted on render based on the times
+  {
+    title:"MORNING ROUTINE",
+    eventType:'event',
+    time:"5:00am-5:30am",
+    notes:"Starting a new routine hopefully this will work on my face as the winter is drying up my skin hella",
+    color:'#DDBAD9'
+  },
+  {
+    title:"Matcha time and get ready for work",
+    eventType:'event',
+    time:"6:00am-7:45m",
+    notes:"Try the new matcha poweder from Davids Tea!",
+    color:'#F9D69E' // this will change based on what the user will pick on the Add Event Page
+  },
+  {
+    title:"UI Team Meeting",
+    eventType:'task',
+    time:"11:00am-11:45m",
+    notes:"Meeting with Martin and Nancy on Zoom also doing a long ass task to see if it will overlap or not",
+  },
+  {
+  title:"MORNING ROUTINE",
+  eventType:'event',
+  time:"5:00am-5:30am",
+  notes:"Starting a new routine hopefully this will work on my face as the winter is drying up my skin hella",
+  color:'#FBD4C0'
+  },
+]
+
 const DailyTodays = () => {
-  const [checked, setChecked] = useState(false);
   return (
     <View style={styles.container}>
       <Header title="Daily's" backgroundColorProp='#F8E1CD'/>
@@ -27,36 +56,41 @@ const DailyTodays = () => {
               />
             </TouchableOpacity>
         </View>
-          {/* <TextInput
-          style={{}}
-          // onChangeText={}
-          // value={}
-          placeholder="Start your day"
-          keyboardType="numeric"
-        /> */}
-        {/* <AdvancedCheckbox
-          value={checked}
-          onValueChange={setChecked}
-          label="Buy the damn bananas"
-          checkedColor="#007AFF"
-          uncheckedColor="#ccc"
-          size={24}
-    /> */}
 
-        <View>
+        {/**eventType:event */}
+        <FlatList 
+        data={exampleData}
+        scrollEnabled={false}
+        keyExtractor={(_, index) => index.toString()}
+        renderItem={({item, index}) => {
 
-        </View>
-
-
+          return (
+            <View style={{alignSelf:'flex-start'}}>
+            {item.eventType === 'event' && (
+              <Event
+                eventTitle={item.title}
+                time={item.time}
+                notes={item.notes}
+                color={item.color}
+                taskNum={index}
+              />
+            )}
+            {item.eventType === 'task' && (
+              <Task 
+              id={'1'}
+              title={item.title}
+              time={item.time}
+              taskTodo ={item.notes}
+              taskChecked={false}
+              onToggle={() => {}}
+              />
+            )}
+          </View>
+          )
+        }}
+        />
+        
       </ScrollView>
-      
-      <TouchableOpacity style={styles.addToDoContainer}>
-          <FontAwesome6
-          name='list-check'
-          size={25}
-          />
-      </TouchableOpacity>
- 
     </View>
   )
 }
@@ -71,12 +105,32 @@ const styles = StyleSheet.create({
     },
     dayContainer:{
       flexDirection:'row',
-      justifyContent:'space-between'
+      justifyContent:'space-between',
+      marginBottom:10
     },
     addToDoContainer:{
       alignSelf:'flex-end',
       marginHorizontal:45,
       marginVertical:60
-
+    },
+    EventBox:{
+      flexDirection:'row',
+      gap:15,
+      paddingVertical:4,
+    },
+    EventTimeline:{
+      backgroundColor:'#DDBAD9',
+      height:40,
+      width:40,
+      borderRadius:20,
+      justifyContent:'center',
+      alignItems:'center'
+    },
+    timelineBox:{
+      justifyContent:'flex-start',
+      alignItems:'center',
+      gap:8,
+      alignSelf:'stretch',
+      backgroundColor:'red'
     }
 })

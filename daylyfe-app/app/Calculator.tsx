@@ -24,6 +24,8 @@ function divide(first:number, second:number){
   return first / second;
 }
 
+
+
 const Calculator = () => {
   const [typedEquation, setTypedEquation] = useState(''); // the entire equation the user will see
   const [currentNum,setCurrentNum] = useState(''); // current number the user is typing
@@ -31,8 +33,31 @@ const Calculator = () => {
   const [answer,setAnswer] = useState(0);
   const [equation,setEquation] = useState<number[]>([])     // 4 _ 6 _ 9 
   const [operations,setOperations] = useState<string[]>([]);// _ + _ + _ 
+  console.log(currentNum)
   console.log(equation)
   console.log(operations)
+
+  function deleteLeftHandler(){
+    let lastCharacter = typedEquation.at(-1)
+
+    if(lastCharacter === ' '){ //operation
+      setOperations(operations.slice(0, -1));
+      setTypedEquation(typedEquation.slice(0,-3))
+
+      const newCurrentCum = equation.at(-1)
+      if(newCurrentCum === undefined) setCurrentNum('')
+      else setCurrentNum(String(newCurrentCum))
+    } 
+    else if(lastCharacter === '.'){ //decimal point
+      setTypedEquation(typedEquation.slice(0, -1));
+      setCurrentNum(currentNum.slice(0,-1))
+    } 
+    else{
+      setEquation(equation.slice(0,-1));
+      setCurrentNum(currentNum.slice(0,-1));
+      setTypedEquation(typedEquation.slice(0, -1));
+    }
+  }
 
   function calculateAnswer(numArray:number[],opsArray:string[]){
     let ans = 0;
@@ -44,18 +69,18 @@ const Calculator = () => {
         ans = ops[i] === '*'
         ? multiply(nums[i], nums[i+1]): divide(nums[i], nums[i+1]);
 
-        setOperations(ops.splice(i, 1));
-        setEquation(nums.splice(i, 2));
-        i--;
+        setOperations(ops.splice(i, 1)); // remove operation
+        setEquation(nums.splice(i, 2));  // remove 2 numbers 
+        i--;                             // since we removed one operation, go back 1
       }
     }
 
-    let result = ans
+    let result = (ans === 0)? numArray[0]:ans
     for(let i = 0; i < ops.length; i++ ){
       if(ops[i] === '+'){
-        result = add(result, nums[i++])
+        result = add(result, nums[i+1])
       } else if (ops[i] === '-'){
-        result = subtract(nums[i++],result) // in case result is a bigger num 
+        result = subtract(nums[i+1],result) // in case result is a bigger num 
       }
     }
 
@@ -120,8 +145,7 @@ const Calculator = () => {
           <TouchableOpacity 
           style={styles.numberButtonSize}
           onPress={() => {
-            // setCurrentNum(currentNum.slice(0,-1))
-            // setTypedEquation(typedEquation.slice(0,-1))
+            deleteLeftHandler();
           }}
           >
             <FontAwesome6  name ='delete-left' size={30} color='white'/>
@@ -253,8 +277,14 @@ const Calculator = () => {
           <TouchableOpacity 
           style={styles.equalButtonSize}
           onPress={() => {
-            const finalNum = [...equation, Number(currentNum)];
-            calculateAnswer(finalNum, operations)
+            if (currentNum === "" || currentNum === ".") return;
+            
+            const currentNumValue = Number(currentNum);
+            if (isNaN(currentNumValue)) return;
+
+            const finalEq = [...equation, currentNumValue];
+            setEquation(finalEq)
+            calculateAnswer(equation, operations);
           }}
           >
             <FontAwesome6  name ='equals' size={30} color='white'/>
