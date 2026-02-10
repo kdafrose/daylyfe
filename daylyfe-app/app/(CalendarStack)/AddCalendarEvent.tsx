@@ -262,7 +262,7 @@ const AddCalendaraEvent = () => {
   )
 }
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container:{
     paddingHorizontal:32,
     paddingVertical:16
