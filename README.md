@@ -35,11 +35,10 @@ Individuals lack a centralized platform that integrates daily scheduling with we
 ## Techstack
 ### Frontend
 - React Native
-- Javascript
-- Tailwind CSS
-- 
+- Typescript
+- HTML/CSS
 ### Backend
-- Expo
+- Expo Navigation
 - PostgreSQL
 
 

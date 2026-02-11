@@ -1,11 +1,13 @@
 import { StyleSheet, View, TouchableOpacity, Modal, Pressable} from 'react-native'
 import { useState } from 'react';
+import { useRouter } from 'expo-router';
 import SerifText from './SerifText';
 import React from 'react'
 import { FontAwesome6 } from '@expo/vector-icons'
 
 const GeneralAddMenu = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const router = useRouter();
 
   return (
     <View style={styles.container}>
@@ -30,7 +32,10 @@ const GeneralAddMenu = () => {
                     <View style={styles.buttonsBoxRow}>
                         <SerifText style={{fontSize:18}}>Event</SerifText>
                         <TouchableOpacity 
-                            onPress={() => {}}
+                            onPress={() => {
+                                setOpenMenu(false)
+                                router.push('/(CalendarStack)/AddCalendarEvent')
+                            }}
                             style={[styles.buttons, {backgroundColor:'#DDBAD9',}]}
                         >
                             <FontAwesome6
@@ -43,7 +48,10 @@ const GeneralAddMenu = () => {
                     <View style={styles.buttonsBoxRow}>
                         <SerifText style={{fontSize:18}}>Task</SerifText>
                         <TouchableOpacity 
-                            onPress={() => {}}
+                            onPress={() => {
+                                setOpenMenu(false);
+                                router.push('/(CalendarStack)/AddCalendarTask');
+                            }}
                             style={[styles.buttons, {backgroundColor:'#F9D69E',}]}
                         >
                             <FontAwesome6

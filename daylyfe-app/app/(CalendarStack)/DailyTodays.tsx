@@ -1,26 +1,39 @@
 import { View, StyleSheet, ScrollView, TouchableOpacity, TextInput, FlatList} from 'react-native'
-import { useState } from 'react';
 import Event from '@/components/DailyComponents/Event';
-import { AdvancedCheckbox } from 'react-native-advanced-checkbox';
+import Task from '@/components/DailyComponents/Task';
 import { FontAwesome6 } from '@expo/vector-icons'
-import DashedLine from 'react-native-dashed-line';
 import SerifText from '@/components/SerifText'
-import React from 'react'
+import React, {useState} from 'react'
 import Header from '@/components/Header'
 
-const exampleData = [
+const exampleData = [ // these will be sorted on render based on the times
   {
-    eventTitle:"MORNING ROUTINE",
+    title:"MORNING ROUTINE",
+    eventType:'event',
     time:"5:00am-5:30am",
     notes:"Starting a new routine hopefully this will work on my face as the winter is drying up my skin hella",
-    eventColor:'#DDBAD9'
+    color:'#DDBAD9'
   },
   {
-    eventTitle:"Matcha time and get ready for work",
+    title:"Matcha time and get ready for work",
+    eventType:'event',
     time:"6:00am-7:45m",
     notes:"Try the new matcha poweder from Davids Tea!",
-    eventColor:'#F9D69E' // this will change based on what the user will pick on the Add Event Page
-  }
+    color:'#F9D69E' // this will change based on what the user will pick on the Add Event Page
+  },
+  {
+    title:"UI Team Meeting",
+    eventType:'task',
+    time:"11:00am-11:45m",
+    notes:"Meeting with Martin and Nancy on Zoom also doing a long ass task to see if it will overlap or not",
+  },
+  {
+  title:"MORNING ROUTINE",
+  eventType:'event',
+  time:"5:00am-5:30am",
+  notes:"Starting a new routine hopefully this will work on my face as the winter is drying up my skin hella",
+  color:'#FBD4C0'
+  },
 ]
 
 const DailyTodays = () => {
@@ -44,62 +57,40 @@ const DailyTodays = () => {
             </TouchableOpacity>
         </View>
 
-        <View>
-          <FlatList 
-          data={exampleData}
-          scrollEnabled={false}
-          keyExtractor={(_, index) => index.toString()}
-          renderItem={({item, index}) => {
+        {/**eventType:event */}
+        <FlatList 
+        data={exampleData}
+        scrollEnabled={false}
+        keyExtractor={(_, index) => index.toString()}
+        renderItem={({item, index}) => {
 
-            return (
-              <View style={styles.EventBox}>
-                <View style={styles.timelineBox}>
-                  <View style={[styles.EventTimeline, {backgroundColor:item.eventColor}]}>
-                    <SerifText style={{color:'#FFFFFF', fontSize:18}}>{index + 1}</SerifText>
-                  </View>
-                  <DashedLine 
-                  dashLength={8} 
-                  axis='vertical'
-                  dashThickness={2}
-                  style={{flex:1}}
-                  />
-                </View>
-                <Event 
-                  eventTitle={item.eventTitle} 
-                  time={item.time} 
-                  notes={item.notes} 
-                />
-            </View>
-            )
-          }}
-          />
-        </View>
+          return (
+            <View style={{alignSelf:'flex-start'}}>
+            {item.eventType === 'event' && (
+              <Event
+                eventTitle={item.title}
+                time={item.time}
+                notes={item.notes}
+                color={item.color}
+                taskNum={index}
+              />
+            )}
+            {item.eventType === 'task' && (
+              <Task 
+              id={'1'}
+              title={item.title}
+              time={item.time}
+              taskTodo ={item.notes}
+              taskChecked={false}
+              onToggle={() => {}}
+              />
+            )}
+          </View>
+          )
+        }}
+        />
         
       </ScrollView>
-      
-      {/* <TouchableOpacity style={styles.addToDoContainer}>
-          <FontAwesome6
-          name='list-check'
-          size={25}
-          />
-      </TouchableOpacity> */}
-
-      {/* <View style={styles.EventBox}>
-            <View style={styles.timelineBox}>
-              <View style={styles.EventTimeline}>
-                <SerifText style={{color:'#FFFFFF', fontSize:18}}>{index + 1}</SerifText>
-              </View>
-              <DashedLine 
-              dashLength={8} 
-              axis='vertical'
-              dashThickness={2}
-              style={{flex:1}}
-              />
-            </View>
-
-            <Event eventTitle={exampleData[0].eventTitle} time={exampleData[0].time} notes={exampleData[0].notes} />
-          </View> */}
- 
     </View>
   )
 }
@@ -125,7 +116,7 @@ const styles = StyleSheet.create({
     EventBox:{
       flexDirection:'row',
       gap:15,
-      paddingVertical:4
+      paddingVertical:4,
     },
     EventTimeline:{
       backgroundColor:'#DDBAD9',
@@ -139,5 +130,7 @@ const styles = StyleSheet.create({
       justifyContent:'flex-start',
       alignItems:'center',
       gap:8,
+      alignSelf:'stretch',
+      backgroundColor:'red'
     }
 })
