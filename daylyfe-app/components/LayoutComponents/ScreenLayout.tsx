@@ -1,6 +1,6 @@
 import { View, StyleSheet} from "react-native";
 import React from "react";
-import Footer from "@/components/Footer";
+import Footer from "./Footer";
 import Header from "./Header";
 
 export default function ScreenLayout({ children}: { children: React.ReactNode}) {

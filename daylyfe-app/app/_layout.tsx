@@ -46,6 +46,18 @@ export default function RootLayout() {
             },
           }}
         />
+        <Drawer.Screen 
+        name='(NotesStack)'
+        options={{
+          drawerLabel:'Notes',
+          title:'Notes',
+          headerShown:true,
+          headerStyle:{
+            backgroundColor:'#F8E1CD',
+            shadowColor:'transparent'
+          },
+        }}
+        />
          <Drawer.Screen 
           name="Calculator"
           options={{ 

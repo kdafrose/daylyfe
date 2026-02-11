@@ -4,7 +4,7 @@ import Task from '@/components/DailyComponents/Task';
 import { FontAwesome6 } from '@expo/vector-icons'
 import SerifText from '@/components/SerifText'
 import React, {useState} from 'react'
-import Header from '@/components/Header'
+import Header from '@/components/LayoutComponents/Header'
 
 const exampleData = [ // these will be sorted on render based on the times
   {
@@ -39,7 +39,7 @@ const exampleData = [ // these will be sorted on render based on the times
 const DailyTodays = () => {
   return (
     <View style={styles.container}>
-      <Header title="Daily's" backgroundColorProp='#F8E1CD'/>
+      <Header title="Daily's" backgroundColorProp='#F8E1CD' paddingProp={24}/>
       <ScrollView style={{padding:24}} >
         <View style={styles.dayContainer}>
             <View>
@@ -77,12 +77,12 @@ const DailyTodays = () => {
             )}
             {item.eventType === 'task' && (
               <Task 
-              id={'1'}
+              // id={'1'}
               title={item.title}
               time={item.time}
               taskTodo ={item.notes}
               taskChecked={false}
-              onToggle={() => {}}
+              // onToggle={() => {}}
               />
             )}
           </View>
@@ -97,7 +97,7 @@ const DailyTodays = () => {
 
 export default DailyTodays;
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     container:{
         backgroundColor:'#F8E1CD',
         flex:1,

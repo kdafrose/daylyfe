@@ -1,11 +1,11 @@
 import { StyleSheet, View, TouchableOpacity, Modal, Pressable} from 'react-native'
-import { useState } from 'react';
 import { useRouter } from 'expo-router';
-import SerifText from './SerifText';
+import { useState } from 'react';
+import SerifText from '../SerifText';
 import React from 'react'
 import { FontAwesome6 } from '@expo/vector-icons'
 
-const GeneralAddMenu = () => {
+const CalendarAddMenu = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const router = useRouter();
 
@@ -32,10 +32,7 @@ const GeneralAddMenu = () => {
                     <View style={styles.buttonsBoxRow}>
                         <SerifText style={{fontSize:18}}>Event</SerifText>
                         <TouchableOpacity 
-                            onPress={() => {
-                                setOpenMenu(false)
-                                router.push('/(CalendarStack)/AddCalendarEvent')
-                            }}
+                            onPress={() => {router.push('/AddCalendarEvent')}}
                             style={[styles.buttons, {backgroundColor:'#DDBAD9',}]}
                         >
                             <FontAwesome6
@@ -48,10 +45,7 @@ const GeneralAddMenu = () => {
                     <View style={styles.buttonsBoxRow}>
                         <SerifText style={{fontSize:18}}>Task</SerifText>
                         <TouchableOpacity 
-                            onPress={() => {
-                                setOpenMenu(false);
-                                router.push('/(CalendarStack)/AddCalendarTask');
-                            }}
+                            onPress={() => {router.push('/AddCalendarTask')}}
                             style={[styles.buttons, {backgroundColor:'#F9D69E',}]}
                         >
                             <FontAwesome6
@@ -62,30 +56,16 @@ const GeneralAddMenu = () => {
                     </View>
 
                     <View style={styles.buttonsBoxRow}>
-                        <SerifText style={{fontSize:18}}>Note</SerifText>
+                        <SerifText style={{fontSize:18}}>Add Note</SerifText>
                     <TouchableOpacity 
                         onPress={() => {}}
-                        style={[styles.buttons, {backgroundColor:'#BBE6F1',}]}
+                        style={[styles.buttons, {backgroundColor:'#CDDEFF',}]}
                         >
                             <FontAwesome6
-                            name="note-sticky"
+                            name="paperclip"
                             size={25}
                             />
                         </TouchableOpacity>
-                    </View>
-
-                    <View style={styles.buttonsBoxRow}>
-                        <SerifText style={{fontSize:18}}>Note Folder</SerifText>
-                    <TouchableOpacity 
-                        onPress={() => {}}
-                        style={[styles.buttons, {backgroundColor:'#D0E4A1',}]}
-                        >
-                            <FontAwesome6
-                            name="folder"
-                            size={25}
-                            />
-                        </TouchableOpacity>
-
                     </View>
 
                     <View style={styles.buttonsBoxRow}>
@@ -105,7 +85,7 @@ const GeneralAddMenu = () => {
   )
 }
 
-export default GeneralAddMenu;
+export default CalendarAddMenu;
 
 const styles = StyleSheet.create({
     container:{
@@ -125,7 +105,7 @@ const styles = StyleSheet.create({
     modalBox:{
         position:'absolute',
         right: 38,
-        bottom: 65, // height of footer\
+        bottom: 56, // height of footer\
         marginVertical:8,
         justifyContent:'space-evenly',
         height:240

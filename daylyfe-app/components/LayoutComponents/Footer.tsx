@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React, {FC} from 'react'
 
-import SerifText from './SerifText'
+import SerifText from '../SerifText'
 import { useRouter, usePathname} from 'expo-router'
 import { FontAwesome5 } from '@expo/vector-icons';
 

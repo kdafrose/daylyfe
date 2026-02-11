@@ -1,19 +1,39 @@
-import { Stack } from "expo-router";
+import { router, Stack } from "expo-router";
 import { DrawerActions } from "@react-navigation/native";
+import { useRouter, usePathname } from "expo-router";
+
+import ScreenLayout from "@/components/LayoutComponents/ScreenLayout";
+import GeneralAddMenu from "@/components/LayoutComponents/GeneralAddMenu";
+import NotesAddMenu from "@/components/LayoutComponents/NotesAddMenu";
+
 
 export default function NotesLayout() {
-    return(
-        <Stack>
-            <Stack.Screen 
-            name="NotesHome"
-            options={{
-            headerTitle:"Notes"
-            }}
-            />
 
-            <Stack.Screen 
-            
-            />
-        </Stack>
+    const routerPath = usePathname();
+    
+    const renderMenu = () => {
+        switch(routerPath){
+            case '/Note':
+                return <NotesAddMenu />
+            default:
+                return <GeneralAddMenu />
+        }
+    }
+
+    return(
+        <ScreenLayout>
+            <Stack initialRouteName="NotesHome">
+            {/**Screens*/}
+                <Stack.Screen 
+                name="NotesHome"
+                options={{
+                headerTitle:"Notes",
+                headerShown:false
+                }}
+                />
+            {/**End of Screens */}
+            </Stack>
+            {renderMenu()}
+        </ScreenLayout>
     )
 }

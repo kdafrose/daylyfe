@@ -5,10 +5,10 @@ import { useTheme, DrawerActions } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 
 // Footer and Layouts
-import Header from '@/components/Header';
-import GeneralAddMenu from '@/components/GeneralAddMenu';
-import CalendarAddMenu from '@/components/CalendarAddMenu';
-import ScreenLayout from '@/components/ScreenLayout';
+import Header from '@/components/LayoutComponents/Header';
+import GeneralAddMenu from '@/components/LayoutComponents/GeneralAddMenu';
+import CalendarAddMenu from '@/components/LayoutComponents/CalendarAddMenu';
+import ScreenLayout from '@/components/LayoutComponents/ScreenLayout';
 
 
 
@@ -35,6 +35,10 @@ export default function CalendarHomeLayout() {
       case '/DailyTodays':
       case '/':
         return <CalendarAddMenu />
+      case '/AddCalendarEvent':
+        return null;
+      case '/AddCalendarTask':
+        return null;
       default:
         return <GeneralAddMenu />
     }
@@ -54,8 +58,8 @@ export default function CalendarHomeLayout() {
         name="AddCalendarEvent" 
         options={{ 
           headerTitle: 'New Event',
-          headerShown:true,
-          ...backButtonCss
+          headerShown:false,
+          // ...backButtonCss,
         }} 
         />
 
@@ -63,8 +67,8 @@ export default function CalendarHomeLayout() {
         name="AddCalendarTask" 
         options={{ 
           headerTitle: 'New Task',
-          headerShown:true,
-          ...backButtonCss
+          headerShown:false,
+          // ...backButtonCss,
         }} 
         />
 
