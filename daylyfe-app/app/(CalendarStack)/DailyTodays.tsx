@@ -1,7 +1,8 @@
 import { View, StyleSheet, ScrollView, TouchableOpacity, TextInput, FlatList} from 'react-native'
 import Event from '@/components/DailyComponents/Event';
 import Task from '@/components/DailyComponents/Task';
-import { FontAwesome6 } from '@expo/vector-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faFaceGrinBeam } from '@fortawesome/free-solid-svg-icons';
 import SerifText from '@/components/SerifText'
 import React, {useState} from 'react'
 import Header from '@/components/LayoutComponents/Header'
@@ -49,11 +50,11 @@ const DailyTodays = () => {
             </View>
 
             <TouchableOpacity>
-              <FontAwesome6 
-              name='smile'
-              size={45}
-              color='#887747'
-              />
+              <FontAwesomeIcon 
+                icon={faFaceGrinBeam}
+                size={45}
+                color='#ffc66bff'
+                />
             </TouchableOpacity>
         </View>
 

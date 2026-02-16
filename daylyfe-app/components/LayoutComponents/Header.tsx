@@ -17,8 +17,10 @@ const Header:FC<HeaderProps> = ({title, backgroundColorProp, paddingProp}) => {
     const routeName = usePathname();
 
     const showBack = () => {
-        switch(routeName){
+        switch(routeName){ // all home pages will not have a back button
             case '/CalendarHome':
+            case '/NotesHome':
+            case '/BudgetHome':
             case '/':
                 return 0
             default:
@@ -46,16 +48,6 @@ const Header:FC<HeaderProps> = ({title, backgroundColorProp, paddingProp}) => {
     //     }
     // }
 
-    const titleColor = () => {
-        switch(routeName){
-            case '/CalendarHome':
-            case '/':
-                return '#FFFFFF'
-            default:
-                return 'black'
-        }
-    }
-
   return (
     <View style={[styles.container, {backgroundColor:backgroundColorProp, padding:paddingProp,}]}>
         <View style={styles.header}>
@@ -71,11 +63,11 @@ const Header:FC<HeaderProps> = ({title, backgroundColorProp, paddingProp}) => {
                 />
             </TouchableOpacity>
 
-            <SerifText style={{fontSize:24, color:titleColor()}}>{title}</SerifText>
+            <SerifText style={{fontSize:24,}}>{title}</SerifText>
             <TouchableOpacity>
                 <Ionicons
                     name="menu"
-                    style={{color:titleColor(), opacity:showDrawer()}}
+                    style={{ opacity:showDrawer()}}
                     size={24}
                     onPress={() => {
                     navigation.dispatch(DrawerActions.toggleDrawer())}

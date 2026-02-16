@@ -51,6 +51,14 @@ export default function RootLayout() {
         options={{
           drawerLabel:'Notes',
           title:'Notes',
+          headerShown:false,
+        }}
+        />
+        <Drawer.Screen 
+        name='(BudgetStack)'
+        options={{
+          drawerLabel:'Budget',
+          title:'Budget',
           headerShown:true,
           headerStyle:{
             backgroundColor:'#F8E1CD',
@@ -58,13 +66,13 @@ export default function RootLayout() {
           },
         }}
         />
-         <Drawer.Screen 
-          name="Calculator"
-          options={{ 
-            drawerLabel:'Calculator',
-            title:'Calculator',
-            headerShown:true
-          }}
+        <Drawer.Screen 
+        name="Calculator"
+        options={{ 
+          drawerLabel:'Calculator',
+          title:'Calculator',
+          headerShown:true
+        }}
         />
       </Drawer>
   );
