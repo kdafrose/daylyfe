@@ -54,7 +54,7 @@ const CalendarHome = () => {
     >
       <CalendarHeader title='' backgroundColorProp='#F6BFBF' paddingProp={24}/>
       <CalendarMonth />
-      <View style={{padding:24}}>
+      <View style={{padding:24, marginTop:26}}>
         <View style={cStyle.dayContainer}>
           <View>
             <SerifText style={{fontSize:24}}>February 10, 2026</SerifText>

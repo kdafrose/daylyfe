@@ -5,7 +5,7 @@ import DatePicker from '@/components/CalendarComponents/DatePicker'
 import Header from '@/components/LayoutComponents/Header'
 import React, {useState} from 'react'
 
-const colorEventTags = ["#DDBAD9", "#F6BFBF", "#F9D69E", "#D0E4A1", "#BBE6F1", "#FF6868", "#FBD4C0"]
+export const colorEventTags = ["#DDBAD9", "#F6BFBF", "#F9D69E", "#D0E4A1", "#BBE6F1", "#FF6868", "#FBD4C0"]
 const repeatOptions = ["Never", "Daily", "Weekly", "Monthly", "Yearly"]
 const alertOptions = ["None", "On Event", "15 minute before", "30 minutes before", "1 hour before", "2 hours before", "1 day before"]
 

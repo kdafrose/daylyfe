@@ -5,6 +5,7 @@ import { faFolder } from '@fortawesome/free-solid-svg-icons';
 import Header from '@/components/LayoutComponents/Header'
 import React from 'react'
 import SerifText from '@/components/SerifText'
+import { useRouter } from 'expo-router';
 
 const samplePinnedNotes = [
   {
@@ -53,6 +54,18 @@ const sampleFolders = ["Work Meeting Notes", "Workouts Routines 2026"]
 const pinnedNotesColors = ["#DDBAD9", "#F6BFBF", "#F9D69E", "#D0E4A1", "#BBE6F1", "#FF6868", "#FBD4C0"]
 
 const NotesHome = () => {
+  const router = useRouter();
+
+  const goToNote = (id:number, noteTitle:string) => {
+    router.push({
+      pathname:'/(NotesStack)/Notes',
+      params: {
+          notesId:id, // change this
+          title:noteTitle
+      }
+    })
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -63,7 +76,13 @@ const NotesHome = () => {
             <SerifText style={styles.titleStyle}>Pinned Notes</SerifText>
             <View style={{flexDirection:'row', flexWrap:'wrap'}}>
               {samplePinnedNotes.map((item, index) => (
-                <TouchableOpacity style={{gap:5, marginRight:6}} key={index}>
+                <TouchableOpacity 
+                style={{gap:5, marginRight:6}}
+                key={index}
+                onPress={() => {
+                  goToNote(index, item.notesTitle)
+                }}
+                >
                   <View style={[styles.pinnedStickies, {backgroundColor:pinnedNotesColors[index % 7], padding:5}]}>
                     <SerifText style={{fontSize:10, width:80}}>{item.preview}</SerifText>
                   </View>
@@ -77,7 +96,17 @@ const NotesHome = () => {
             <SerifText style={styles.titleStyle}>Folders</SerifText>
               <View style={{flexWrap:'wrap', flexDirection:'row'}}>
                 {sampleFolders.map((item, index) => (
-                  <TouchableOpacity key={index} style={{gap:1, marginRight:12}}>
+                  <TouchableOpacity 
+                  key={index} 
+                  style={{gap:1, marginRight:12}}
+                  onPress={() => {router.push({
+                    pathname:'/(NotesStack)/NotesFolder',
+                    params: {
+                      folderId:index,
+                      folderName:item
+                    }
+                  })}}
+                  >
                     <FontAwesomeIcon icon={faFolder} size={85} color='#F9D69E'/>
                     <SerifText style={{fontSize:12, width:80}}>{item}</SerifText>
                   </TouchableOpacity>
@@ -94,7 +123,13 @@ const NotesHome = () => {
               scrollEnabled={false}
               renderItem={({item, index}) => {
                 return (
-                  <TouchableOpacity key={index} style={styles.eachNoteRow}>
+                  <TouchableOpacity 
+                  key={index} 
+                  style={styles.eachNoteRow}
+                  onPress={() => {
+                    goToNote(index, item.notesTitle)
+                  }}
+                  >
                     <SerifText>{item.notesTitle}</SerifText>
                     <SerifText>{item.date}</SerifText>
                     <SerifText style={{fontSize:12}}>{item.preview}</SerifText>
@@ -112,7 +147,7 @@ const NotesHome = () => {
 
 export default NotesHome
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     container:{
       backgroundColor:'#F8E1CD',
       flex:1,

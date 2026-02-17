@@ -13,8 +13,10 @@ export default function NotesLayout() {
     
     const renderMenu = () => {
         switch(routerPath){
-            case '/Notes':
-                return <NotesAddMenu />
+            // case '/Notes':
+            //     return <NotesAddMenu />
+            case '/AddNewFolder':
+                return null
             default:
                 return <GeneralAddMenu />
         }
@@ -33,6 +35,18 @@ export default function NotesLayout() {
                 />
                 <Stack.Screen 
                 name="Notes"
+                options={{
+                    headerShown:false
+                }}
+                />
+                <Stack.Screen 
+                name="AddNewFolder"
+                options={{
+                    headerShown:false
+                }}
+                />
+                <Stack.Screen 
+                name="NotesFolder"
                 options={{
                     headerShown:false
                 }}

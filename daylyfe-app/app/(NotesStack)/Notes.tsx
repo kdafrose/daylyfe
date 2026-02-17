@@ -1,26 +1,43 @@
-import { StyleSheet, View, ScrollView, TouchableOpacity, TextInput, SafeAreaViewBase } from 'react-native'
+import { StyleSheet, View, ScrollView, TouchableOpacity, TextInput } from 'react-native'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faThumbTack, faCheck, faC } from '@fortawesome/free-solid-svg-icons'
+import { faThumbTack, faCheck,} from '@fortawesome/free-solid-svg-icons'
 import SerifText from '@/components/SerifText'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import { useLocalSearchParams } from 'expo-router'
 import Header from '@/components/LayoutComponents/Header'
 
 const sampleNote = [
     {
         title:'Lasagna Soup Recipe',
-        date:'April 12m 2026',
+        date:'April 12 2026',
         note:'Fall Season Meal 1!!!'
     }
 ]
 
 const Notes = () => {
+
+    // TODO:Grabbing from the database
+    const {notesId, title} = useLocalSearchParams();
+    useEffect(() => {
+
+    },[notesId])
+
+    // TODO: Set the data of the note
     const [isPinned, setIsPinned] = useState(false); 
-    const [noteTitle, setNoteTitle] = useState(sampleNote[0].title);
+    const [noteTitle, setNoteTitle] = useState<string>('');
     const [note, setNote] = useState(sampleNote[0].note);
     
+    // TODO:Save the notes
     const saveNote = () => {
         // save to backend!
     }
+
+    // TODO:Delete the note
+    const deleteNote = () => {
+
+    }
+
+    
 
   return (
     <ScrollView style={styles.container}>

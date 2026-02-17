@@ -22,9 +22,9 @@ const Header:FC<HeaderProps> = ({title, backgroundColorProp, paddingProp}) => {
             case '/NotesHome':
             case '/BudgetHome':
             case '/':
-                return 0
+                return 'none'
             default:
-                return 100
+                return 'flex'
         }
     }
 
@@ -32,15 +32,18 @@ const Header:FC<HeaderProps> = ({title, backgroundColorProp, paddingProp}) => {
         switch(routeName){
             case '/AddCalendarEvent':
             case '/AddCalendarTask':
-                return 0;
+            case '/AddNewFolder':
+                return 'none';
             default:
-                return 100;
+                return 'flex';
         }
     }
 
     const backRoute = () => {
         switch(routeName){
             case '/Notes':
+            case '/AddNewFolder':
+            case '/NotesFolder':
                 return router.push('/(NotesStack)/NotesHome')
             default:
                 return router.push('/(CalendarStack)/CalendarHome')
@@ -64,7 +67,8 @@ const Header:FC<HeaderProps> = ({title, backgroundColorProp, paddingProp}) => {
                 <Ionicons
                     name="chevron-back"
                     size={24}
-                    style={{opacity:showBack()}}
+                    style={{display:showBack()}}
+                    // pointerEvents={showBack()}
                     onPress={() => {
                         backRoute();
                         // router.push('/(CalendarStack)/CalendarHome');
@@ -72,11 +76,12 @@ const Header:FC<HeaderProps> = ({title, backgroundColorProp, paddingProp}) => {
                 />
             </TouchableOpacity>
 
-            <SerifText style={{fontSize:24,}}>{title}</SerifText>
+            <SerifText style={{fontSize:24}}>{title}</SerifText>
             <TouchableOpacity>
                 <Ionicons
                     name="menu"
-                    style={{ opacity:showDrawer()}}
+                    style={{ display:showDrawer()}}
+                    // pointerEvents='none'
                     size={24}
                     onPress={() => {
                     navigation.dispatch(DrawerActions.toggleDrawer())}
