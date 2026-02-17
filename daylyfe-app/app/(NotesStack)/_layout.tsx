@@ -16,6 +16,7 @@ export default function NotesLayout() {
             // case '/Notes':
             //     return <NotesAddMenu />
             case '/AddNewFolder':
+            case '/Notes':
                 return null
             default:
                 return <GeneralAddMenu />

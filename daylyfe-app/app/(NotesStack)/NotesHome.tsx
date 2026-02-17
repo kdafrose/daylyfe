@@ -68,7 +68,7 @@ const NotesHome = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Header title='Notes' backgroundColorProp='' paddingProp={24}/>
         <View style={styles.contentContainer}>
           {/**Pinned Notes */}

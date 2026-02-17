@@ -4,7 +4,30 @@ import SerifText from '../SerifText';
 import React from 'react'
 import { FontAwesome6 } from '@expo/vector-icons'
 
-const NotesAddMenu = () => {
+interface notesAddMenuProps {
+    isPin:boolean,
+    onPinChange: (pin:boolean) => void
+    
+}
+
+//TODO:update sb to pin note
+const pinNote = () => {
+
+}
+
+// TODO:Delete the note
+const deleteNote = () => {
+
+}
+
+//TODO:Update db to move note to a different folder
+const addNoteToFolder = () => {
+
+}
+
+
+
+const NotesAddMenu = ({onPinChange, isPin}: notesAddMenuProps) => {
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
@@ -43,7 +66,9 @@ const NotesAddMenu = () => {
                     <View style={styles.buttonsBoxRow}>
                         <SerifText style={{fontSize:18}}>Pin</SerifText>
                         <TouchableOpacity 
-                            onPress={() => {}}
+                            onPress={() => {
+                                onPinChange(!isPin)
+                            }}
                             style={[styles.buttons, {backgroundColor:'#F9D69E',}]}
                         >
                             <FontAwesome6

@@ -5,6 +5,8 @@ import SerifText from '@/components/SerifText'
 import React, {useState, useEffect} from 'react'
 import { useLocalSearchParams } from 'expo-router'
 import Header from '@/components/LayoutComponents/Header'
+import GeneralAddMenu from '@/components/LayoutComponents/GeneralAddMenu'
+import NotesAddMenu from '@/components/LayoutComponents/NotesAddMenu'
 
 const sampleNote = [
     {
@@ -32,53 +34,52 @@ const Notes = () => {
         // save to backend!
     }
 
-    // TODO:Delete the note
-    const deleteNote = () => {
-
-    }
-
-    
-
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
         <Header title='' backgroundColorProp='#F8E1CD' paddingProp={6}/>
-        <View style={styles.contentBox}>
-            {/** Title section */}
-            <View style={{flexDirection: 'row', alignItems: 'flex-start',}}>
-                <View style={{flex:1}}>
+        <ScrollView>
+            <View style={styles.contentBox}>
+                {/** Title section */}
+                <View style={{flexDirection: 'row', alignItems: 'flex-start',}}>
+                    <View style={{flex:1}}>
+                        <TextInput 
+                        value={noteTitle}
+                        multiline
+                        onChangeText={setNoteTitle}
+                        style={[{fontFamily:'DMSerifDisplay-Regular', flexWrap:'wrap'}, styles.titleStyle]}
+                        placeholder='Add Title...'
+                        />
+                        <SerifText style={styles.dateStyle}>April 12, 2026</SerifText>
+                    </View>
+                    <View style={styles.titleButtonsContainer}>
+                        {isPinned && (
+                        <FontAwesomeIcon icon={faThumbTack} size={18}/>
+                        )}
+                        <TouchableOpacity 
+                        style={styles.checkSaveButton}
+                        onPress={() => {saveNote();}}
+                        >
+                            <FontAwesomeIcon icon={faCheck} size={18}/>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                {/**Notes area */}
+                <View style={styles.editor}>
                     <TextInput 
-                    value={noteTitle}
+                    value={note}
                     multiline
-                    onChangeText={setNoteTitle}
-                    style={[{fontFamily:'DMSerifDisplay-Regular', flexWrap:'wrap'}, styles.titleStyle]}
-                    placeholder='Add Title...'
+                    onChangeText={setNote}
+                    style={{fontFamily:'DMSerifDisplay-Regular', fontSize:18}}
+                    placeholder='New Note...'
                     />
-                    <SerifText style={styles.dateStyle}>April 12, 2026</SerifText>
-                </View>
-                <View style={styles.titleButtonsContainer}>
-                    {isPinned && (
-                    <FontAwesomeIcon icon={faThumbTack} size={18}/>
-                    )}
-                    <TouchableOpacity 
-                    style={styles.checkSaveButton}
-                    onPress={() => {saveNote();}}
-                    >
-                        <FontAwesomeIcon icon={faCheck} size={18}/>
-                    </TouchableOpacity>
                 </View>
             </View>
-            {/**Notes area */}
-            <View style={styles.editor}>
-                <TextInput 
-                value={note}
-                multiline
-                onChangeText={setNote}
-                style={{fontFamily:'DMSerifDisplay-Regular', fontSize:18}}
-                placeholder='New Note...'
-                />
-            </View>
-        </View>
-    </ScrollView>
+        </ScrollView>
+        <NotesAddMenu
+         isPin={isPinned}
+        onPinChange={setIsPinned}
+        />
+    </View>
   )
 }
 

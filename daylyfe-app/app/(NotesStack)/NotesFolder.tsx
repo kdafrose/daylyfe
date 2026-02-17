@@ -5,7 +5,6 @@ import { colorEventTags as notesColors } from '../(CalendarStack)/AddCalendarEve
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import SerifText from '@/components/SerifText';
 import Header from '@/components/LayoutComponents/Header';
-import GeneralAddMenu from '@/components/LayoutComponents/GeneralAddMenu';
 
 const sampleNotes =[ 
     // the Preview will be capped at a certain length
@@ -57,32 +56,31 @@ const NotesFolder = () => {
 
   return (
     <View style={styles.container}>
-            <Header title={folderName.toString()} backgroundColorProp='#F8E1CD' paddingProp={12}/>
-            <ScrollView style={{paddingVertical:16}}>
-                {/**Notes */}
-                <View style={{flexWrap:'wrap', flexDirection:'row', gap:2}}>
-                    {sampleNotes.map((item, index) => (
-                        <TouchableOpacity 
-                        style={{gap:8, marginRight:6, paddingVertical:4}} key={index}
-                        onPress={() => {
-                            router.push({
-                                pathname:'/(NotesStack)/Notes',
-                                params: {
-                                    notesId:index, // change this
-                                    title:item.notesTitle
-                                }
-                            })
-                        }}
-                        >
-                            <View style={[fStyles.pinnedStickies, {backgroundColor:notesColors[index % 7], padding:5,}]}>
-                                <SerifText style={{fontSize:10, width:80}}>{item.preview}</SerifText>
-                            </View>
-                            <SerifText style={{fontSize:12, width:80, textAlign:'center'}}>{item.notesTitle}</SerifText>
-                        </TouchableOpacity>
-                    ))}
-                </View>
-            </ScrollView>
-        <GeneralAddMenu />            
+        <Header title={folderName.toString()} backgroundColorProp='#F8E1CD' paddingProp={12}/>
+        <ScrollView style={{paddingVertical:16}}>
+            {/**Notes */}
+            <View style={{flexWrap:'wrap', flexDirection:'row', gap:2}}>
+                {sampleNotes.map((item, index) => (
+                    <TouchableOpacity 
+                    style={{gap:8, marginRight:6, paddingVertical:4}} key={index}
+                    onPress={() => {
+                        router.push({
+                            pathname:'/(NotesStack)/Notes',
+                            params: {
+                                notesId:index, // change this
+                                title:item.notesTitle
+                            }
+                        })
+                    }}
+                    >
+                        <View style={[fStyles.pinnedStickies, {backgroundColor:notesColors[index % 7], padding:5,}]}>
+                            <SerifText style={{fontSize:10, width:80}}>{item.preview}</SerifText>
+                        </View>
+                        <SerifText style={{fontSize:12, width:80, textAlign:'center'}}>{item.notesTitle}</SerifText>
+                    </TouchableOpacity>
+                ))}
+            </View>
+        </ScrollView>
     </View>
   )
 }
