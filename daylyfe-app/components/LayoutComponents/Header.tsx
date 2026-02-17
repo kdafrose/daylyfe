@@ -41,24 +41,16 @@ const Header:FC<HeaderProps> = ({title, backgroundColorProp, paddingProp}) => {
 
     const backRoute = () => {
         switch(routeName){
-            case '/Notes':
             case '/AddNewFolder':
-            case '/NotesFolder':
+            case '/NewNote':
                 return router.push('/(NotesStack)/NotesHome')
+            case '/EditNotes':
+            case '/NotesFolder':
+                return router.back()
             default:
                 return router.push('/(CalendarStack)/CalendarHome')
         }
     }
-
-    // const backButtonLocation = () => {
-    //     switch(routeName){
-    //         case '/DailyTodays':
-    //         case '/':
-    //             return router.push('/(CalendarStack)/CalendarHome');
-    //         default:
-    //             return router.back();
-    //     }
-    // }
 
   return (
     <View style={[styles.container, {backgroundColor:backgroundColorProp, padding:paddingProp,}]}>

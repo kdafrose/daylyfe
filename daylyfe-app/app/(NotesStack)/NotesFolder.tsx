@@ -1,5 +1,7 @@
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, ScrollView, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { styles as fStyles } from './NotesHome';
 import { colorEventTags as notesColors } from '../(CalendarStack)/AddCalendarEvent';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -59,13 +61,19 @@ const NotesFolder = () => {
         <Header title={folderName.toString()} backgroundColorProp='#F8E1CD' paddingProp={12}/>
         <ScrollView style={{paddingVertical:16}}>
             {/**Notes */}
+            <View >
+                <TouchableOpacity style={styles.selectButton}>
+                    <FontAwesomeIcon icon={faCircleCheck} />
+                    <SerifText>Select</SerifText>
+                </TouchableOpacity>
+            </View>
             <View style={{flexWrap:'wrap', flexDirection:'row', gap:2}}>
                 {sampleNotes.map((item, index) => (
                     <TouchableOpacity 
                     style={{gap:8, marginRight:6, paddingVertical:4}} key={index}
                     onPress={() => {
                         router.push({
-                            pathname:'/(NotesStack)/Notes',
+                            pathname:'/(NotesStack)/EditNotes',
                             params: {
                                 notesId:index, // change this
                                 title:item.notesTitle
@@ -94,4 +102,10 @@ const styles = StyleSheet.create({
     flex:1,
     padding:16,
     },
+    selectButton:{
+        flexDirection:'row',
+        alignItems:'center',
+        gap:6,
+        marginVertical:4
+    }
 })

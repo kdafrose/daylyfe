@@ -20,7 +20,7 @@ const deleteNote = () => {
 
 }
 
-//TODO:Update db to move note to a different folder
+//TODO:Update db to move note to a folder
 const addNoteToFolder = () => {
 
 }
@@ -127,8 +127,8 @@ export default NotesAddMenu;
 const styles = StyleSheet.create({
     container:{
         position: 'absolute',
-        right: 38,
-        bottom: 0, // height of footer\
+        right: 18,
+        bottom: -20, // height of footer\
         marginVertical:8,
         justifyContent:'space-evenly',
     },

@@ -1,13 +1,25 @@
 import { StyleSheet, View, TouchableOpacity, Modal, Pressable} from 'react-native'
 import { useState } from 'react';
-import { useRouter } from 'expo-router';
 import SerifText from '../SerifText';
 import React from 'react'
 import { FontAwesome6 } from '@expo/vector-icons'
 
-const GeneralAddMenu = () => {
+interface notesAddMenuProps {
+    
+}
+
+// TODO:Delete the note
+const deleteNote = () => {
+
+}
+
+//TODO:Update db to move note to a different folder
+const addNoteToFolder = () => {
+
+}
+
+const FolderAddMenu = ({}: notesAddMenuProps) => {
   const [openMenu, setOpenMenu] = useState(false);
-  const router = useRouter();
 
   return (
     <View style={styles.container}>
@@ -30,70 +42,31 @@ const GeneralAddMenu = () => {
                 <Pressable style={styles.opacityBox}/>
                 <View style={styles.modalBox}>
                     <View style={styles.buttonsBoxRow}>
-                        <SerifText style={{fontSize:18}}>Event</SerifText>
-                        <TouchableOpacity 
-                            onPress={() => {
-                                setOpenMenu(false)
-                                router.push('/AddCalendarEvent')
-                            }}
-                            style={[styles.buttons, {backgroundColor:'#DDBAD9',}]}
-                        >
-                            <FontAwesome6
-                            name="calendar-check"
-                            size={25}
-                            />
-                        </TouchableOpacity>
-                    </View>
-
-                    <View style={styles.buttonsBoxRow}>
-                        <SerifText style={{fontSize:18}}>Task</SerifText>
-                        <TouchableOpacity 
-                            onPress={() => {
-                                setOpenMenu(false);
-                                router.push('/AddCalendarTask');
-                            }}
-                            style={[styles.buttons, {backgroundColor:'#F9D69E',}]}
-                        >
-                            <FontAwesome6
-                            name="circle-check"
-                            size={25}
-                            />
-                        </TouchableOpacity>
-                    </View>
-
-                    <View style={styles.buttonsBoxRow}>
-                        <SerifText style={{fontSize:18}}>Note</SerifText>
+                        <SerifText style={{fontSize:18}}>Move</SerifText>
                     <TouchableOpacity 
-                        onPress={() => {
-                            setOpenMenu(false)
-                            router.push('/(NotesStack)/NewNote')
-                        }}
-                        style={[styles.buttons, {backgroundColor:'#BBE6F1',}]}
+                        onPress={() => {}}
+                        style={[styles.buttons, {backgroundColor:'#CDDEFF',}]}
                         >
                             <FontAwesome6
-                            name="note-sticky"
-                            size={25}
+                            name="angles-right"
+                            size={20}
                             />
                         </TouchableOpacity>
                     </View>
 
                     <View style={styles.buttonsBoxRow}>
-                        <SerifText style={{fontSize:18}}>Note Folder</SerifText>
+                        <SerifText style={{fontSize:18}}>Delete</SerifText>
                     <TouchableOpacity 
-                        onPress={() => {
-                            setOpenMenu(false)
-                            router.push('/(NotesStack)/AddNewFolder')
-                        }}
-                        style={[styles.buttons, {backgroundColor:'#D0E4A1',}]}
+                        onPress={() => {}}
+                        style={[styles.buttons, {backgroundColor:'#FBD4C0',}]}
                         >
                             <FontAwesome6
-                            name="folder"
-                            size={25}
+                            name="trash-can"
+                            size={20}
                             />
                         </TouchableOpacity>
 
                     </View>
-
                     <View style={styles.buttonsBoxRow}>
                     <TouchableOpacity 
                         onPress={() => setOpenMenu(false)}
@@ -111,7 +84,7 @@ const GeneralAddMenu = () => {
   )
 }
 
-export default GeneralAddMenu;
+export default FolderAddMenu;
 
 const styles = StyleSheet.create({
     container:{
@@ -132,9 +105,8 @@ const styles = StyleSheet.create({
         position:'absolute',
         right: 38,
         bottom: 65, // height of footer\
-        marginVertical:8,
         justifyContent:'space-evenly',
-        height:240
+        height:180
     },
     opacityBox:{
         ...StyleSheet.absoluteFillObject,

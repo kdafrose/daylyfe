@@ -58,7 +58,7 @@ const NotesHome = () => {
 
   const goToNote = (id:number, noteTitle:string) => {
     router.push({
-      pathname:'/(NotesStack)/Notes',
+      pathname:'/(NotesStack)/EditNotes',
       params: {
           notesId:id, // change this
           title:noteTitle
