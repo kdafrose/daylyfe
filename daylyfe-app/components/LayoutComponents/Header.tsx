@@ -38,6 +38,15 @@ const Header:FC<HeaderProps> = ({title, backgroundColorProp, paddingProp}) => {
         }
     }
 
+    const backRoute = () => {
+        switch(routeName){
+            case '/Notes':
+                return router.push('/(NotesStack)/NotesHome')
+            default:
+                return router.push('/(CalendarStack)/CalendarHome')
+        }
+    }
+
     // const backButtonLocation = () => {
     //     switch(routeName){
     //         case '/DailyTodays':
@@ -57,8 +66,8 @@ const Header:FC<HeaderProps> = ({title, backgroundColorProp, paddingProp}) => {
                     size={24}
                     style={{opacity:showBack()}}
                     onPress={() => {
-                        // backButtonLocation();
-                        router.push('/(CalendarStack)/CalendarHome');
+                        backRoute();
+                        // router.push('/(CalendarStack)/CalendarHome');
                     }}
                 />
             </TouchableOpacity>

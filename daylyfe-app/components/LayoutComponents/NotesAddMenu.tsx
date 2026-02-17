@@ -35,7 +35,7 @@ const NotesAddMenu = () => {
                         >
                             <FontAwesome6
                             name="folder-plus"
-                            size={25}
+                            size={20}
                             />
                         </TouchableOpacity>
                     </View>
@@ -48,7 +48,7 @@ const NotesAddMenu = () => {
                         >
                             <FontAwesome6
                             name="thumbtack"
-                            size={25}
+                            size={20}
                             />
                         </TouchableOpacity>
                     </View>
@@ -61,7 +61,7 @@ const NotesAddMenu = () => {
                         >
                             <FontAwesome6
                             name="angles-right"
-                            size={25}
+                            size={20}
                             />
                         </TouchableOpacity>
                     </View>
@@ -74,7 +74,7 @@ const NotesAddMenu = () => {
                         >
                             <FontAwesome6
                             name="trash-can"
-                            size={25}
+                            size={20}
                             />
                         </TouchableOpacity>
 

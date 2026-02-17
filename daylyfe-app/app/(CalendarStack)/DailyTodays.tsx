@@ -41,7 +41,7 @@ const DailyTodays = () => {
   return (
     <View style={styles.container}>
       <Header title="Daily's" backgroundColorProp='#F8E1CD' paddingProp={24}/>
-      <ScrollView style={{padding:24}} >
+      <ScrollView style={{padding:24, marginBottom:24}} showsVerticalScrollIndicator={false}>
         <View style={styles.dayContainer}>
             <View>
               <SerifText style={{fontSize:24}}>February 3, 2026</SerifText>

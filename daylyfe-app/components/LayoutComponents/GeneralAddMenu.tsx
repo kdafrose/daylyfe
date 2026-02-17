@@ -64,7 +64,10 @@ const GeneralAddMenu = () => {
                     <View style={styles.buttonsBoxRow}>
                         <SerifText style={{fontSize:18}}>Note</SerifText>
                     <TouchableOpacity 
-                        onPress={() => {}}
+                        onPress={() => {
+                            setOpenMenu(false)
+                            router.push('/(NotesStack)/Notes')
+                        }}
                         style={[styles.buttons, {backgroundColor:'#BBE6F1',}]}
                         >
                             <FontAwesome6

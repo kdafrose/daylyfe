@@ -30,13 +30,20 @@ const sampleTodoDate = [ // Needs a foreign key of Event table to grab
     }
 ]
 
-function handleAddTodo() {
-    // will persist to the database
-}
 
 const Event:FC<EventProps> = ({eventTitle, time, notes, color, taskNum}) => {
     const [todos,setTodos] = useState<todoProps[]>(sampleTodoDate); // HARDCODED
     const [contentHeight, setContentHeight] = useState(0)
+    
+    function handleAddTodo() {
+        // will persist to the database
+    }
+    
+    function deleteTodo(indexToDelete:number) {
+        // update the UI
+        const updatedTodos = todos.filter((_,index) => index != indexToDelete);
+        setTodos(updatedTodos);
+    }
 
   return (
     <View style={{flexDirection:'row', alignItems:'flex-start'}}>
@@ -115,12 +122,12 @@ const Event:FC<EventProps> = ({eventTitle, time, notes, color, taskNum}) => {
                         <View>
                             <TouchableOpacity
                             onPress={() => {
-                                // deleteEvent(index)
+                                deleteTodo(index);
                             }}
                             >
                                 <FontAwesome6 
                                     name='x'
-                                    size={12}
+                                    size={10}
                                     color='#8A94A6'
                                     />
                             </TouchableOpacity>
