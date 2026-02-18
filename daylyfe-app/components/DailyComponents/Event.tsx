@@ -4,6 +4,7 @@ import { AdvancedCheckbox } from 'react-native-advanced-checkbox'
 import SerifText from '../SerifText'
 import React, {FC, useState} from 'react'
 import { FontAwesome6 } from '@expo/vector-icons'
+import { TextInput } from 'react-native-gesture-handler'
 
 interface EventProps {
     eventTitle:string,
@@ -29,14 +30,21 @@ const sampleTodoDate = [ // Needs a foreign key of Event table to grab
     }
 ]
 
-function handleAddTodo() {
-    // will persist to the database
-}
 
 const Event:FC<EventProps> = ({eventTitle, time, notes, color, taskNum}) => {
     const [todos,setTodos] = useState<todoProps[]>(sampleTodoDate); // HARDCODED
-
     const [contentHeight, setContentHeight] = useState(0)
+    
+    function handleAddTodo() {
+        // will persist to the database
+    }
+    
+    function deleteTodo(indexToDelete:number) {
+        // update the UI
+        const updatedTodos = todos.filter((_,index) => index != indexToDelete);
+        setTodos(updatedTodos);
+    }
+
   return (
     <View style={{flexDirection:'row', alignItems:'flex-start'}}>
 
@@ -83,18 +91,47 @@ const Event:FC<EventProps> = ({eventTitle, time, notes, color, taskNum}) => {
                 data={todos}
                 keyExtractor={(_,index) => index.toString()}
                 scrollEnabled={false}
-                renderItem ={({item}) => {
+                renderItem ={({item, index}) => {
                     return (
-                        <View style={{flexDirection:'row', alignItems:'center', gap:6}}>
-                            <AdvancedCheckbox
-                            value={item.isChecked}
-                            // onValueChange={() => {}} Fill this in later
-                            onValueChange={() => {!item.isChecked}}
-                            size={18}
-                            uncheckedColor='#8A94A6'
-                            checkedColor='#F6BFBF'
-                            />
-                            <SerifText>{item.todoTask}</SerifText>
+                        <View style={styles.todoLine}>
+                            <View style={{flexDirection:'row', alignItems:'center', gap:6}}>
+                                <AdvancedCheckbox
+                                value={item.isChecked}
+                                // onValueChange={() => {}} Fill this in later
+                                onValueChange={() => {
+                                const updatedTodos = [...todos]; // create an array and add current todos
+                                updatedTodos[index].isChecked = !updatedTodos[index].isChecked; // check todo based on index
+                                setTodos(updatedTodos); // save changes of current and new todos (rewriting)
+                            }}
+                                size={18}
+                                uncheckedColor='#8A94A6'
+                                checkedColor='#F6BFBF'
+                                />
+                                {/* <SerifText>{item.todoTask}</SerifText> */}
+                                <TextInput 
+                                style={{fontFamily:'DMSerifDisplay-Regular'}}
+                                value={item.todoTask}
+                                onChangeText={(text) => {
+                                const updatedTodos = [...todos]; // create new array with current todos list
+                                updatedTodos[index].todoTask = text; // change the task
+                                setTodos(updatedTodos); // save as rewrite for the new changes
+                            }}
+                                placeholder='Add new task...'
+                                />
+                        </View>
+                        <View>
+                            <TouchableOpacity
+                            onPress={() => {
+                                deleteTodo(index);
+                            }}
+                            >
+                                <FontAwesome6 
+                                    name='x'
+                                    size={10}
+                                    color='#8A94A6'
+                                    />
+                            </TouchableOpacity>
+                        </View>
                     </View>
                     )
                 }}
@@ -149,5 +186,10 @@ const styles = StyleSheet.create({
       alignItems:'center', 
       gap:8,
       paddingVertical:8
-    }
+    },
+    todoLine:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between',
+        paddingRight:12}
 })

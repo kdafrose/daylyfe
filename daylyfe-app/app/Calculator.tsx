@@ -2,7 +2,7 @@ import { StyleSheet,TouchableOpacity, View } from 'react-native'
 import { FontAwesome6 } from '@expo/vector-icons'
 import { use, useState } from 'react'
 import React from 'react'
-import ScreenLayout from '@/components/ScreenLayout'
+import ScreenLayout from '@/components/LayoutComponents/ScreenLayout'
 import SerifText from '@/components/SerifText'
 
 function add(first:number, second:number){

@@ -1,5 +1,6 @@
 import { View, StyleSheet, TouchableOpacity, FlatList, Modal, Pressable} from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
+import Header from '@/components/LayoutComponents/Header'
 import { styles as taskStyles } from './AddCalendarEvent'
 import SerifText from '@/components/SerifText'
 import DatePicker from '@/components/CalendarComponents/DatePicker'
@@ -22,6 +23,7 @@ const AddCalendarTask = () => {
 
   return (
     <View style={taskStyles.container}>
+      <Header title='Add New Task' backgroundColorProp='#F8E1CD' paddingProp={0}/>
       <View style={taskStyles.column}>
         <TextInput 
         placeholder='Add Title'
