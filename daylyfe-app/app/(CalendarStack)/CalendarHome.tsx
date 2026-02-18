@@ -1,9 +1,10 @@
 import { View, StyleSheet, FlatList, TouchableOpacity, ScrollView} from 'react-native'
 import React, {useEffect} from 'react'
-import { FontAwesome6 } from '@expo/vector-icons';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { styles as cStyle } from './DailyTodays';
 import Header from '@/components/LayoutComponents/Header';
+import { faFaceGrinBeam } from '@fortawesome/free-solid-svg-icons';
+import CalendarHeader from '@/components/LayoutComponents/CalendarHeader';
 import CalendarMonth from '@/components/CalendarMonth';
 import Event from '@/components/DailyComponents/Event';
 import Task from '@/components/DailyComponents/Task';
@@ -51,9 +52,9 @@ const CalendarHome = () => {
     style={styles.container}
     showsVerticalScrollIndicator={false}
     >
-      <Header title='' backgroundColorProp='#F6BFBF' paddingProp={24}/>
+      <CalendarHeader title='' backgroundColorProp='#F6BFBF' paddingProp={24}/>
       <CalendarMonth />
-      <View style={{padding:24}}>
+      <View style={{padding:24, marginTop:26}}>
         <View style={cStyle.dayContainer}>
           <View>
             <SerifText style={{fontSize:24}}>February 10, 2026</SerifText>
@@ -61,13 +62,11 @@ const CalendarHome = () => {
             <SerifText style={{fontSize:16}}>Notes..</SerifText>
           </View>
            <TouchableOpacity>
-              <FontAwesome6 
-              name="face-grin-beam"
-              iconStyle="solid"
+              <FontAwesomeIcon 
+              icon={faFaceGrinBeam}
               size={45}
-              color='#887747'
+              color='#ffc66bff'
               />
-              {/* <FontAwesomeIcon icon="fa-solid fa-face-grin-beam" /> */}
             </TouchableOpacity>
         </View>
 

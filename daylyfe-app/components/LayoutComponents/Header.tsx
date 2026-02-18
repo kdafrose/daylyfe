@@ -17,12 +17,14 @@ const Header:FC<HeaderProps> = ({title, backgroundColorProp, paddingProp}) => {
     const routeName = usePathname();
 
     const showBack = () => {
-        switch(routeName){
+        switch(routeName){ // all home pages will not have a back button
             case '/CalendarHome':
+            case '/NotesHome':
+            case '/BudgetHome':
             case '/':
-                return 0
+                return 'none'
             default:
-                return 100
+                return 'flex'
         }
     }
 
@@ -30,29 +32,23 @@ const Header:FC<HeaderProps> = ({title, backgroundColorProp, paddingProp}) => {
         switch(routeName){
             case '/AddCalendarEvent':
             case '/AddCalendarTask':
-                return 0;
+            case '/AddNewFolder':
+                return 'none';
             default:
-                return 100;
+                return 'flex';
         }
     }
 
-    // const backButtonLocation = () => {
-    //     switch(routeName){
-    //         case '/DailyTodays':
-    //         case '/':
-    //             return router.push('/(CalendarStack)/CalendarHome');
-    //         default:
-    //             return router.back();
-    //     }
-    // }
-
-    const titleColor = () => {
+    const backRoute = () => {
         switch(routeName){
-            case '/CalendarHome':
-            case '/':
-                return '#FFFFFF'
+            case '/AddNewFolder':
+            case '/NewNote':
+                return router.push('/(NotesStack)/NotesHome')
+            case '/EditNotes':
+            case '/NotesFolder':
+                return router.back()
             default:
-                return 'black'
+                return router.push('/(CalendarStack)/CalendarHome')
         }
     }
 
@@ -63,19 +59,21 @@ const Header:FC<HeaderProps> = ({title, backgroundColorProp, paddingProp}) => {
                 <Ionicons
                     name="chevron-back"
                     size={24}
-                    style={{opacity:showBack()}}
+                    style={{display:showBack()}}
+                    // pointerEvents={showBack()}
                     onPress={() => {
-                        // backButtonLocation();
-                        router.push('/(CalendarStack)/CalendarHome');
+                        backRoute();
+                        // router.push('/(CalendarStack)/CalendarHome');
                     }}
                 />
             </TouchableOpacity>
 
-            <SerifText style={{fontSize:24, color:titleColor()}}>{title}</SerifText>
+            <SerifText style={{fontSize:24}}>{title}</SerifText>
             <TouchableOpacity>
                 <Ionicons
                     name="menu"
-                    style={{color:titleColor(), opacity:showDrawer()}}
+                    style={{ display:showDrawer()}}
+                    // pointerEvents='none'
                     size={24}
                     onPress={() => {
                     navigation.dispatch(DrawerActions.toggleDrawer())}

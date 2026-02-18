@@ -4,7 +4,30 @@ import SerifText from '../SerifText';
 import React from 'react'
 import { FontAwesome6 } from '@expo/vector-icons'
 
-const NotesAddMenu = () => {
+interface notesAddMenuProps {
+    isPin:boolean,
+    onPinChange: (pin:boolean) => void
+    
+}
+
+//TODO:update sb to pin note
+const pinNote = () => {
+
+}
+
+// TODO:Delete the note
+const deleteNote = () => {
+
+}
+
+//TODO:Update db to move note to a folder
+const addNoteToFolder = () => {
+
+}
+
+
+
+const NotesAddMenu = ({onPinChange, isPin}: notesAddMenuProps) => {
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
@@ -35,7 +58,7 @@ const NotesAddMenu = () => {
                         >
                             <FontAwesome6
                             name="folder-plus"
-                            size={25}
+                            size={20}
                             />
                         </TouchableOpacity>
                     </View>
@@ -43,12 +66,14 @@ const NotesAddMenu = () => {
                     <View style={styles.buttonsBoxRow}>
                         <SerifText style={{fontSize:18}}>Pin</SerifText>
                         <TouchableOpacity 
-                            onPress={() => {}}
+                            onPress={() => {
+                                onPinChange(!isPin)
+                            }}
                             style={[styles.buttons, {backgroundColor:'#F9D69E',}]}
                         >
                             <FontAwesome6
                             name="thumbtack"
-                            size={25}
+                            size={20}
                             />
                         </TouchableOpacity>
                     </View>
@@ -61,7 +86,7 @@ const NotesAddMenu = () => {
                         >
                             <FontAwesome6
                             name="angles-right"
-                            size={25}
+                            size={20}
                             />
                         </TouchableOpacity>
                     </View>
@@ -74,7 +99,7 @@ const NotesAddMenu = () => {
                         >
                             <FontAwesome6
                             name="trash-can"
-                            size={25}
+                            size={20}
                             />
                         </TouchableOpacity>
 
@@ -102,8 +127,8 @@ export default NotesAddMenu;
 const styles = StyleSheet.create({
     container:{
         position: 'absolute',
-        right: 38,
-        bottom: 0, // height of footer\
+        right: 18,
+        bottom: -20, // height of footer\
         marginVertical:8,
         justifyContent:'space-evenly',
     },

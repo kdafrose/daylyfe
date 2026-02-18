@@ -4,8 +4,7 @@ import { useRouter, usePathname } from "expo-router";
 
 import ScreenLayout from "@/components/LayoutComponents/ScreenLayout";
 import GeneralAddMenu from "@/components/LayoutComponents/GeneralAddMenu";
-import NotesAddMenu from "@/components/LayoutComponents/NotesAddMenu";
-
+import FolderAddMenu from "@/components/LayoutComponents/FolderAddMenu";
 
 export default function NotesLayout() {
 
@@ -13,8 +12,12 @@ export default function NotesLayout() {
     
     const renderMenu = () => {
         switch(routerPath){
-            case '/Note':
-                return <NotesAddMenu />
+            case '/AddNewFolder':
+            case '/EditNotes':
+            case '/NewNote':
+                return null
+            case '/NotesFolder':
+                return <FolderAddMenu />
             default:
                 return <GeneralAddMenu />
         }
@@ -29,6 +32,30 @@ export default function NotesLayout() {
                 options={{
                 headerTitle:"Notes",
                 headerShown:false
+                }}
+                />
+                <Stack.Screen 
+                name="EditNotes"
+                options={{
+                    headerShown:false
+                }}
+                />
+                <Stack.Screen 
+                name="NewNote"
+                options={{
+                    headerShown:false
+                }}
+                />
+                <Stack.Screen 
+                name="AddNewFolder"
+                options={{
+                    headerShown:false
+                }}
+                />
+                <Stack.Screen 
+                name="NotesFolder"
+                options={{
+                    headerShown:false
                 }}
                 />
             {/**End of Screens */}
