@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity,FlatList } from 'react-native'
 import CircularProgress from 'react-native-circular-progress-indicator'
-import SerifText from './SerifText'
+import SerifText from '../SerifText'
 import React, { FC, useState } from 'react'
 
 interface Products{

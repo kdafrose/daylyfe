@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
-import BudgetCategories from "@/components/BudgetCategories";
+import BudgetCategories from "@/components/BudgetComponents/BudgetCategories";
 
 //Footer and Layouts
 import ScreenLayout from "@/components/LayoutComponents/ScreenLayout";
