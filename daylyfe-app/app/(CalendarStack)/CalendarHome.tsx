@@ -61,13 +61,13 @@ const CalendarHome = () => {
             <SerifText style={{fontSize:20}}>Tuesday</SerifText>
             <SerifText style={{fontSize:16}}>Notes..</SerifText>
           </View>
-           <TouchableOpacity>
+           <View style={{height:45, backgroundColor:'white', borderRadius:25}}>
               <FontAwesomeIcon 
               icon={faFaceGrinBeam}
               size={45}
               color='#ffc66bff'
               />
-            </TouchableOpacity>
+            </View>
         </View>
 
         {/**eventType:event */}
