@@ -2,6 +2,7 @@ import { StyleSheet, View, TouchableOpacity, Modal, Pressable} from 'react-nativ
 import { useState } from 'react';
 import SerifText from '../SerifText';
 import React from 'react'
+import { useRouter } from 'expo-router';
 import { FontAwesome6 } from '@expo/vector-icons'
 
 interface notesAddMenuProps {
@@ -20,6 +21,7 @@ const addNoteToFolder = () => {
 
 const FolderAddMenu = ({}: notesAddMenuProps) => {
   const [openMenu, setOpenMenu] = useState(false);
+  const router = useRouter();
 
   return (
     <View style={styles.container}>
@@ -41,6 +43,23 @@ const FolderAddMenu = ({}: notesAddMenuProps) => {
             >
                 <Pressable style={styles.opacityBox}/>
                 <View style={styles.modalBox}>
+
+                    <View style={styles.buttonsBoxRow}>
+                        <SerifText style={{fontSize:18}}>Note</SerifText>
+                    <TouchableOpacity 
+                        onPress={() => {
+                            setOpenMenu(false)
+                            router.push('/(NotesStack)/NewNote')
+                        }}
+                        style={[styles.buttons, {backgroundColor:'#BBE6F1',}]}
+                        >
+                            <FontAwesome6
+                            name="note-sticky"
+                            size={25}
+                            />
+                        </TouchableOpacity>
+                    </View>
+
                     <View style={styles.buttonsBoxRow}>
                         <SerifText style={{fontSize:18}}>Move</SerifText>
                     <TouchableOpacity 
@@ -65,8 +84,8 @@ const FolderAddMenu = ({}: notesAddMenuProps) => {
                             size={20}
                             />
                         </TouchableOpacity>
-
                     </View>
+
                     <View style={styles.buttonsBoxRow}>
                     <TouchableOpacity 
                         onPress={() => setOpenMenu(false)}
@@ -78,6 +97,7 @@ const FolderAddMenu = ({}: notesAddMenuProps) => {
                             />
                         </TouchableOpacity>
                     </View>
+
                 </View>
             </Modal>
         </View>
@@ -104,7 +124,7 @@ const styles = StyleSheet.create({
     modalBox:{
         position:'absolute',
         right: 38,
-        bottom: 65, // height of footer\
+        bottom: 75, // height of footer\
         justifyContent:'space-evenly',
         height:180
     },

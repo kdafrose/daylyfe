@@ -1,5 +1,5 @@
 import { StyleSheet, View, ScrollView, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { styles as fStyles } from './NotesHome';
@@ -52,41 +52,63 @@ const sampleNotes =[
   }
 ]
 
+interface Notes{
+    title:string,
+    date:string,
+    preview:string
+}
+
 const NotesFolder = () => {
     const router = useRouter();
     const { folderId, folderName } = useLocalSearchParams();
+
+    useEffect(() => {
+        // grab all notes in the db in this folder
+        setNoteCollection([])
+    }, [folderId])
+
+    const [noteCollection, setNoteCollection] = useState<Notes[]>([])
 
   return (
     <View style={styles.container}>
         <Header title={folderName.toString()} backgroundColorProp='#F8E1CD' paddingProp={12}/>
         <ScrollView style={{paddingVertical:16}}>
             {/**Notes */}
-            <View >
-                <TouchableOpacity style={styles.selectButton}>
-                    <FontAwesomeIcon icon={faCircleCheck} />
-                    <SerifText>Select</SerifText>
-                </TouchableOpacity>
-            </View>
-            <View style={{flexWrap:'wrap', flexDirection:'row', gap:2}}>
-                {sampleNotes.map((item, index) => (
-                    <TouchableOpacity 
-                    style={{gap:8, marginRight:6, paddingVertical:4}} key={index}
-                    onPress={() => {
-                        router.push({
-                            pathname:'/(NotesStack)/EditNotes',
-                            params: {
-                                notesId:index, // change this
-                                title:item.notesTitle
-                            }
-                        })
-                    }}
-                    >
-                        <View style={[fStyles.pinnedStickies, {backgroundColor:notesColors[index % 7], padding:5,}]}>
-                            <SerifText style={{fontSize:10, width:80}}>{item.preview}</SerifText>
+            <View>
+                {noteCollection.length === 0 ? (       
+                    <View style={styles.emptyScreen}>  
+                        <SerifText style={{fontSize:24, opacity:0.4}}>No Notes</SerifText>
+                    </View>
+                ) : (
+                    <View>
+                        <TouchableOpacity style={styles.selectButton}>
+                            <FontAwesomeIcon icon={faCircleCheck} />
+                            <SerifText>Select</SerifText>
+                        </TouchableOpacity>
+    
+                        <View style={{flexWrap:'wrap', flexDirection:'row', gap:2}}>
+                            {sampleNotes.map((item, index) => (
+                                <TouchableOpacity 
+                                style={{gap:8, marginRight:6, paddingVertical:4}} key={index}
+                                onPress={() => {
+                                    router.push({
+                                        pathname:'/(NotesStack)/EditNotes',
+                                        params: {
+                                            notesId:index, // change this
+                                            title:item.notesTitle
+                                        }
+                                    })
+                                }}
+                                >
+                                    <View style={[fStyles.pinnedStickies, {backgroundColor:notesColors[index % 7], padding:5,}]}>
+                                        <SerifText style={{fontSize:10, width:80}}>{item.preview}</SerifText>
+                                    </View>
+                                    <SerifText style={{fontSize:12, width:80, textAlign:'center'}}>{item.notesTitle}</SerifText>
+                                </TouchableOpacity>
+                            ))}
                         </View>
-                        <SerifText style={{fontSize:12, width:80, textAlign:'center'}}>{item.notesTitle}</SerifText>
-                    </TouchableOpacity>
-                ))}
+                    </View>
+                )}
             </View>
         </ScrollView>
     </View>
@@ -107,5 +129,9 @@ const styles = StyleSheet.create({
         alignItems:'center',
         gap:6,
         marginVertical:4
+    },
+    emptyScreen:{
+        flex:1,
+        alignItems:'center'
     }
 })
