@@ -4,6 +4,7 @@ import { faAngleLeft, faAngleRight, faPlus } from '@fortawesome/free-solid-svg-i
 import SerifText from '@/components/SerifText'
 import React, {useState, useEffect} from 'react'
 import Header from '@/components/LayoutComponents/Header'
+import DrawerHeader from '@/components/LayoutComponents/DrawerHeader'
 import DailyBudgetTracker from '@/components/BudgetComponents/DailyBudgetTracker'
 import BudgetCategories from '@/components/BudgetComponents/BudgetCategories'
 import AddItem from './AddItem'
@@ -78,7 +79,8 @@ const BudgetHome = () => {
 
   return (
     <View style={styles.container}>
-      <Header title='Budget' backgroundColorProp='#F8E1CD' paddingProp={24}/>
+      {/* <Header title='Budget' backgroundColorProp='#F8E1CD' paddingProp={24}/> */}
+      <DrawerHeader title='Budget' backgroundColorProp='#F8E1CD' paddingProp={24}/>
       <ScrollView >
         {/**Date */}
         <View style={styles.dateRow}>

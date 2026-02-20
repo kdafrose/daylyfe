@@ -1,8 +1,8 @@
 import { StyleSheet, View, ScrollView, FlatList, TouchableOpacity } from 'react-native'
-import { FontAwesome6 } from '@expo/vector-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faFolder } from '@fortawesome/free-solid-svg-icons';
 import Header from '@/components/LayoutComponents/Header'
+import DrawerHeader from '@/components/LayoutComponents/DrawerHeader';
 import React from 'react'
 import SerifText from '@/components/SerifText'
 import { useRouter } from 'expo-router';
@@ -69,7 +69,7 @@ const NotesHome = () => {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Header title='Notes' backgroundColorProp='' paddingProp={24}/>
+        <DrawerHeader title='Notes' backgroundColorProp='' paddingProp={24}/>
         <View style={styles.contentContainer}>
           {/**Pinned Notes */}
           <View style={styles.sectionBox}>

@@ -87,7 +87,7 @@ const Header:FC<HeaderProps> = ({title, backgroundColorProp, paddingProp}) => {
 
 export default Header
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     container:{
         paddingTop:52,
         paddingBottom:0

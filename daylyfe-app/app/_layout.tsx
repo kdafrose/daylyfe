@@ -71,7 +71,7 @@ export default function RootLayout() {
         options={{ 
           drawerLabel:'Calculator',
           title:'Calculator',
-          headerShown:true
+          headerShown:false
         }}
         />
       </Drawer>

@@ -2,7 +2,7 @@ import { StyleSheet, TouchableOpacity, View, TextInput, Text } from 'react-nativ
 import React, {useState} from 'react'
 import SerifText from '@/components/SerifText'
 import { styles as cStyles } from './AddItem'
-import { colorEventTags, styles as eventStyles } from '../(CalendarStack)/AddCalendarEvent'
+import { styles as eventStyles } from '../(CalendarStack)/AddCalendarEvent'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { EmojiPopup } from 'react-native-emoji-popup';

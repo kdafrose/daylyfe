@@ -2,6 +2,8 @@ import { View, Text, StyleSheet, TouchableOpacity,FlatList } from 'react-native'
 import CircularProgress from 'react-native-circular-progress-indicator'
 import SerifText from '../SerifText'
 import React, { FC, useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faX } from '@fortawesome/free-solid-svg-icons'
 
 interface Products{
     productName:string,
@@ -44,12 +46,27 @@ interface BudgetCategoriesProps {
  */
 const BudgetCategories:FC<BudgetCategoriesProps> = ({categoryName, mainBgColor, accentBgColor, icon, total, progress, items}) => {
 
+    const [editItems, setEditItems] = useState(false);
+
   return (
       <View style={[styles.outerBox, {backgroundColor:mainBgColor,borderColor:accentBgColor}]}> 
       <View style={{justifyContent:'flex-end',  flexDirection:'row', height:20, marginRight:16}}>
-        <TouchableOpacity style={[styles.editButton, {backgroundColor:accentBgColor}]} onPress={() => {}}>
+
+        {editItems ? (
+            <TouchableOpacity 
+            style={[styles.editButton, {backgroundColor:accentBgColor}]} 
+            onPress={() => { setEditItems(false);}}
+            >
+            <SerifText style={{color: 'white', textAlign:'center'}}>save</SerifText>
+            </TouchableOpacity>
+        ):(
+            <TouchableOpacity 
+            style={[styles.editButton, {backgroundColor:accentBgColor}]} 
+            onPress={() => {setEditItems(true);}}
+            >
             <SerifText style={{color: 'white', textAlign:'center'}}>edit</SerifText>
-        </TouchableOpacity>
+            </TouchableOpacity>
+        )}
       </View>
         <View style={styles.titleSpendingsBox}>
             <View style={styles.iconBox}>
@@ -79,14 +96,28 @@ const BudgetCategories:FC<BudgetCategoriesProps> = ({categoryName, mainBgColor, 
                 scrollEnabled={false}
                 data={items}
                 keyExtractor={(_, index) => index.toString()}
-                renderItem={({item}) => {
-                    return (
-                        <View style={[styles.itemsList, {borderBottomColor:mainBgColor}]}>
+                renderItem={({ item }) => (
+                    editItems ? (
+                        <View style={[styles.itemsList, { borderBottomColor: mainBgColor }]}>
                             <SerifText style={styles.itemsText}>{item.productName}</SerifText>
-                            <SerifText style={styles.itemsText}>${item.price}</SerifText>
+                            <View style={styles.itemsRemoveContainer}>
+                                <SerifText style={styles.itemsText}>${item.price}</SerifText>
+                                <TouchableOpacity
+                                onPress={() => {
+
+                                }}
+                                >
+                                <FontAwesomeIcon icon={faX} size={10} color='#8A94A6'/>
+                                </TouchableOpacity>
                         </View>
+                    </View>
+                    ) : (
+                    <View style={[styles.itemsList, { borderBottomColor: mainBgColor }]}>
+                        <SerifText style={styles.itemsText}>{item.productName}</SerifText>
+                        <SerifText style={styles.itemsText}>${item.price}</SerifText>
+                    </View>
                     )
-                }}
+                )}
                 />
             </View>
         </View>
@@ -146,6 +177,12 @@ const styles = StyleSheet.create({
     },
     itemsText:{
         fontSize:16
+    },
+    itemsRemoveContainer:{
+        flexDirection:'row',
+        gap:6,
+        alignItems:'center',
+        justifyContent:'center'
     }
 })
 
