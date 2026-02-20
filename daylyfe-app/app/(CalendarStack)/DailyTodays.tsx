@@ -1,4 +1,4 @@
-import { View, StyleSheet, ScrollView, TouchableOpacity, TextInput, FlatList} from 'react-native'
+import { View, StyleSheet, ScrollView, TouchableOpacity, TextInput, FlatList, Modal, Pressable} from 'react-native'
 import Event from '@/components/DailyComponents/Event';
 import Task from '@/components/DailyComponents/Task';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -6,6 +6,7 @@ import { faFaceGrinBeam } from '@fortawesome/free-solid-svg-icons';
 import SerifText from '@/components/SerifText'
 import React, {useState} from 'react'
 import Header from '@/components/LayoutComponents/Header'
+import EmotionPicker from '@/components/DailyComponents/EmotionPicker';
 
 const exampleData = [ // these will be sorted on render based on the times
   {
@@ -39,6 +40,11 @@ const exampleData = [ // these will be sorted on render based on the times
 
 const DailyTodays = () => {
   const [dailyNote, setDailyNote] = useState('');
+  const [chosenEmotion, setChosenEmotion] = useState({icon:faFaceGrinBeam, color:'#ffc66bff'})
+
+  // Modalities
+  const [openEmotionPicker, setOpenEmotionPicker] = useState(false);
+
   return (
     <View style={styles.container}>
       <Header title="Daily's" backgroundColorProp='#F8E1CD' paddingProp={24}/>
@@ -56,13 +62,28 @@ const DailyTodays = () => {
               />
             </View>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+            style={{backgroundColor:'white', height:45, borderRadius:30}}
+            onPress={() => {setOpenEmotionPicker(true)}}
+            >
               <FontAwesomeIcon 
-                icon={faFaceGrinBeam}
+                icon={chosenEmotion.icon}
                 size={45}
-                color='#ffc66bff'
+                color={chosenEmotion.color}
                 />
             </TouchableOpacity>
+            {/** Pick Emotion */}
+            <Modal
+            visible={openEmotionPicker}
+            onRequestClose={() => setOpenEmotionPicker(false)}
+            transparent
+            >
+              <Pressable 
+              style={{...StyleSheet.absoluteFillObject,}}
+              onPress={() => {setOpenEmotionPicker(false)}}
+              />
+                <EmotionPicker onSelect={setChosenEmotion}/>
+            </Modal>
         </View>
 
         {/**eventType:event */}
