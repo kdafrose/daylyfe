@@ -76,6 +76,7 @@ const BudgetCategories:FC<BudgetCategoriesProps> = ({categoryName, mainBgColor, 
         <View style={styles.itemsBoxView}>
             <View style={styles.itemsBox}>
                 <FlatList
+                scrollEnabled={false}
                 data={items}
                 keyExtractor={(_, index) => index.toString()}
                 renderItem={({item}) => {

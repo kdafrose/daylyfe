@@ -59,7 +59,7 @@ export default function RootLayout() {
         options={{
           drawerLabel:'Budget',
           title:'Budget',
-          headerShown:true,
+          headerShown:false,
           headerStyle:{
             backgroundColor:'#F8E1CD',
             shadowColor:'transparent'
