@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faAngleLeft, faAngleRight, faPlus } from '@fortawesome/free-solid-svg-icons'
 import SerifText from '@/components/SerifText'
 import React, {useState, useEffect} from 'react'
-import Header from '@/components/LayoutComponents/Header'
 import DrawerHeader from '@/components/LayoutComponents/DrawerHeader'
 import DailyBudgetTracker from '@/components/BudgetComponents/DailyBudgetTracker'
 import BudgetCategories from '@/components/BudgetComponents/BudgetCategories'
@@ -79,7 +78,6 @@ const BudgetHome = () => {
 
   return (
     <View style={styles.container}>
-      {/* <Header title='Budget' backgroundColorProp='#F8E1CD' paddingProp={24}/> */}
       <DrawerHeader title='Budget' backgroundColorProp='#F8E1CD' paddingProp={24}/>
       <ScrollView >
         {/**Date */}
@@ -118,7 +116,7 @@ const BudgetHome = () => {
             </TouchableOpacity>
 
             <TouchableOpacity 
-            style={[styles.addButtons, {backgroundColor:'#D9D9D9', width:140, borderRadius:20, justifyContent:'center', padding:4}]}
+            style={[styles.addButtons, {backgroundColor:'rgba(217, 217, 217,0.6)', width:140, borderRadius:20, justifyContent:'center', padding:4}]}
             onPress={() => setOpenAddCategory(true)}
             >
               <FontAwesomeIcon icon={faPlus}/>

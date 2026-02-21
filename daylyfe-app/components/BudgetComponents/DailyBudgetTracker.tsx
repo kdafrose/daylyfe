@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import CircularProgress from 'react-native-circular-progress-indicator'
 import SerifText from '../SerifText'
-import React from 'react'
+import React, {useState, FC} from 'react'
 
 interface DailyBudgetProps{
     total:number,
@@ -10,7 +10,15 @@ interface DailyBudgetProps{
     progress:number
 }
 
-const DailyBudgetTracker = ({budget, total, remaining, progress}:DailyBudgetProps) => {
+
+const DailyBudgetTracker:FC<DailyBudgetProps> = ({budget, total, remaining, progress}) => {
+  
+  function chooseProgressColor(total:number, budget:number){
+    if((total > (budget * 0.5)) && (total <= (budget * 0.75))) { return '#f6bc0fff'}
+    else if (total > (budget *0.75)) {return '#f15454ff'}
+    return '#5D6B3D'
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.progressContainer}>
@@ -24,7 +32,7 @@ const DailyBudgetTracker = ({budget, total, remaining, progress}:DailyBudgetProp
         titleFontSize={20}
         inActiveStrokeColor='#FFFFFF'
         inActiveStrokeOpacity={0.2}
-        activeStrokeColor='#5D6B3D'
+        activeStrokeColor={chooseProgressColor(total,budget)}
         />
       </View>
       <View style={styles.trackingContainer}>

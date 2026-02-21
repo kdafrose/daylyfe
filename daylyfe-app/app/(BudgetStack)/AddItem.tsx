@@ -167,11 +167,6 @@ export const styles = StyleSheet.create({
       paddingVertical:4,
       alignItems:'center'
     },
-    category:{
-      borderRadius:20,
-      paddingHorizontal:12,
-      paddingVertical:4
-    },
     listContents: {
     flexDirection: 'row',
     width: '100%',
