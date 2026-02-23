@@ -74,6 +74,13 @@ export default function RootLayout() {
           headerShown:false
         }}
         />
+        <Drawer.Screen 
+        name="WaterTracker"
+        options={{
+          title:"Water Tracker",
+          headerShown:true
+        }}
+        />
       </Drawer>
   );
 }
