@@ -78,7 +78,7 @@ const BudgetHome = () => {
 
   return (
     <View style={styles.container}>
-      <DrawerHeader title='Budget' backgroundColorProp='#F8E1CD' paddingProp={24}/>
+      <DrawerHeader title='Budget' backgroundColorProp='#F8E1CD' paddingProp={24} paddingLeftProp={40}/>
       <ScrollView >
         {/**Date */}
         <View style={styles.dateRow}>

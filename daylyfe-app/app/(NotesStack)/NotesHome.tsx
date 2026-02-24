@@ -69,7 +69,7 @@ const NotesHome = () => {
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <DrawerHeader title='Notes' backgroundColorProp='' paddingProp={24}/>
+        <DrawerHeader title='Notes' backgroundColorProp='' paddingProp={24} paddingLeftProp={50}/>
         <View style={styles.contentContainer}>
           {/**Pinned Notes */}
           <View style={styles.sectionBox}>

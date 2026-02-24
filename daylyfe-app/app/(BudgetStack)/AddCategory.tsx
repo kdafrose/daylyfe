@@ -1,6 +1,7 @@
 import { StyleSheet, TouchableOpacity, View, TextInput, Text } from 'react-native'
 import React, {useState} from 'react'
 import SerifText from '@/components/SerifText'
+import ScreenLayout from '@/components/LayoutComponents/ScreenLayout'
 import { styles as cStyles } from './AddItem'
 import { styles as eventStyles } from '../(CalendarStack)/AddCalendarEvent'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'

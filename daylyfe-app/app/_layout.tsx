@@ -78,7 +78,7 @@ export default function RootLayout() {
         name="WaterTracker"
         options={{
           title:"Water Tracker",
-          headerShown:true
+          headerShown:false
         }}
         />
       </Drawer>

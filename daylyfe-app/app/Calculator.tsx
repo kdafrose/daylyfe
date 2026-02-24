@@ -91,7 +91,7 @@ const Calculator = () => {
   return (
     <ScreenLayout>
       {/**Calculation Screen */}
-      <DrawerHeader title='' backgroundColorProp='' paddingProp={24}/>
+      <DrawerHeader title='' backgroundColorProp='' paddingProp={24} paddingLeftProp={0}/>
 
       <View style={styles.calculateBox}>
 
