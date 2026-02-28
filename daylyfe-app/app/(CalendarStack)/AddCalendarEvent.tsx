@@ -2,9 +2,10 @@ import { View, StyleSheet, TouchableOpacity, FlatList, Modal, Pressable} from 'r
 import { TextInput } from 'react-native-gesture-handler'
 import SerifText from '@/components/SerifText'
 import DatePicker from '@/components/CalendarComponents/DatePicker'
+import Header from '@/components/LayoutComponents/Header'
 import React, {useState} from 'react'
 
-const colorEventTags = ["#DDBAD9", "#F6BFBF", "#F9D69E", "#D0E4A1", "#BBE6F1", "#FF6868", "#FBD4C0"]
+export const colorEventTags = ["#DDBAD9", "#F6BFBF", "#F9D69E", "#D0E4A1", "#BBE6F1", "#FF6868", "#FBD4C0"]
 const repeatOptions = ["Never", "Daily", "Weekly", "Monthly", "Yearly"]
 const alertOptions = ["None", "On Event", "15 minute before", "30 minutes before", "1 hour before", "2 hours before", "1 day before"]
 
@@ -29,12 +30,12 @@ const AddCalendaraEvent = () => {
     //   return; //dont save 
     // }
 
-
   }
 
 
   return (
     <View style={styles.container}>
+      <Header title='Add New Event' backgroundColorProp='#F8E1CD' paddingProp={0}/>
       <View style={styles.column}>
         {/**Adding event title */}
         <View> 
@@ -245,7 +246,7 @@ const AddCalendaraEvent = () => {
                 onPress={()=> checkEvent()}
                 style={styles.saveButton}
                 >
-                  <SerifText>Save</SerifText>
+                  <SerifText style={{color:'#FFF'}}>Save</SerifText>
                 </TouchableOpacity>
                 <TouchableOpacity 
                 onPress={() => setShowReviewEvent(false)}

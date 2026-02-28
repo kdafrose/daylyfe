@@ -1,11 +1,11 @@
 import { StyleSheet, View, TouchableOpacity, Modal, Pressable} from 'react-native'
-import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import SerifText from './SerifText';
+import { useRouter } from 'expo-router';
+import SerifText from '../SerifText';
 import React from 'react'
 import { FontAwesome6 } from '@expo/vector-icons'
 
-const CalendarAddMenu = () => {
+const GeneralAddMenu = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const router = useRouter();
 
@@ -32,7 +32,10 @@ const CalendarAddMenu = () => {
                     <View style={styles.buttonsBoxRow}>
                         <SerifText style={{fontSize:18}}>Event</SerifText>
                         <TouchableOpacity 
-                            onPress={() => {router.push('/(CalendarStack)/AddCalendarEvent')}}
+                            onPress={() => {
+                                setOpenMenu(false)
+                                router.push('/AddCalendarEvent')
+                            }}
                             style={[styles.buttons, {backgroundColor:'#DDBAD9',}]}
                         >
                             <FontAwesome6
@@ -45,7 +48,10 @@ const CalendarAddMenu = () => {
                     <View style={styles.buttonsBoxRow}>
                         <SerifText style={{fontSize:18}}>Task</SerifText>
                         <TouchableOpacity 
-                            onPress={() => {router.push('/(CalendarStack)/AddCalendarTask')}}
+                            onPress={() => {
+                                setOpenMenu(false);
+                                router.push('/AddCalendarTask');
+                            }}
                             style={[styles.buttons, {backgroundColor:'#F9D69E',}]}
                         >
                             <FontAwesome6
@@ -56,16 +62,36 @@ const CalendarAddMenu = () => {
                     </View>
 
                     <View style={styles.buttonsBoxRow}>
-                        <SerifText style={{fontSize:18}}>Add Note</SerifText>
+                        <SerifText style={{fontSize:18}}>Note</SerifText>
                     <TouchableOpacity 
-                        onPress={() => {}}
-                        style={[styles.buttons, {backgroundColor:'#CDDEFF',}]}
+                        onPress={() => {
+                            setOpenMenu(false)
+                            router.push('/(NotesStack)/NewNote')
+                        }}
+                        style={[styles.buttons, {backgroundColor:'#BBE6F1',}]}
                         >
                             <FontAwesome6
-                            name="paperclip"
+                            name="note-sticky"
                             size={25}
                             />
                         </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.buttonsBoxRow}>
+                        <SerifText style={{fontSize:18}}>Note Folder</SerifText>
+                    <TouchableOpacity 
+                        onPress={() => {
+                            setOpenMenu(false)
+                            router.push('/(NotesStack)/AddNewFolder')
+                        }}
+                        style={[styles.buttons, {backgroundColor:'#D0E4A1',}]}
+                        >
+                            <FontAwesome6
+                            name="folder"
+                            size={25}
+                            />
+                        </TouchableOpacity>
+
                     </View>
 
                     <View style={styles.buttonsBoxRow}>
@@ -85,7 +111,7 @@ const CalendarAddMenu = () => {
   )
 }
 
-export default CalendarAddMenu;
+export default GeneralAddMenu;
 
 const styles = StyleSheet.create({
     container:{
@@ -105,7 +131,7 @@ const styles = StyleSheet.create({
     modalBox:{
         position:'absolute',
         right: 38,
-        bottom: 56, // height of footer\
+        bottom: 65, // height of footer\
         marginVertical:8,
         justifyContent:'space-evenly',
         height:240

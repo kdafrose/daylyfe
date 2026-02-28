@@ -46,13 +46,40 @@ export default function RootLayout() {
             },
           }}
         />
-         <Drawer.Screen 
-          name="Calculator"
-          options={{ 
-            drawerLabel:'Calculator',
-            title:'Calculator',
-            headerShown:true
-          }}
+        <Drawer.Screen 
+        name='(NotesStack)'
+        options={{
+          drawerLabel:'Notes',
+          title:'Notes',
+          headerShown:false,
+        }}
+        />
+        <Drawer.Screen 
+        name='(BudgetStack)'
+        options={{
+          drawerLabel:'Budget',
+          title:'Budget',
+          headerShown:false,
+          headerStyle:{
+            backgroundColor:'#F8E1CD',
+            shadowColor:'transparent'
+          },
+        }}
+        />
+        <Drawer.Screen 
+        name="Calculator"
+        options={{ 
+          drawerLabel:'Calculator',
+          title:'Calculator',
+          headerShown:false
+        }}
+        />
+        <Drawer.Screen 
+        name="WaterTracker"
+        options={{
+          title:"Water Tracker",
+          headerShown:false
+        }}
         />
       </Drawer>
   );

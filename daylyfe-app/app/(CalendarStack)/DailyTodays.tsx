@@ -1,10 +1,12 @@
-import { View, StyleSheet, ScrollView, TouchableOpacity, TextInput, FlatList} from 'react-native'
+import { View, StyleSheet, ScrollView, TouchableOpacity, TextInput, FlatList, Modal, Pressable} from 'react-native'
 import Event from '@/components/DailyComponents/Event';
 import Task from '@/components/DailyComponents/Task';
-import { FontAwesome6 } from '@expo/vector-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faFaceGrinBeam } from '@fortawesome/free-solid-svg-icons';
 import SerifText from '@/components/SerifText'
 import React, {useState} from 'react'
-import Header from '@/components/Header'
+import Header from '@/components/LayoutComponents/Header'
+import EmotionPicker from '@/components/DailyComponents/EmotionPicker';
 
 const exampleData = [ // these will be sorted on render based on the times
   {
@@ -37,24 +39,51 @@ const exampleData = [ // these will be sorted on render based on the times
 ]
 
 const DailyTodays = () => {
+  const [dailyNote, setDailyNote] = useState('');
+  const [chosenEmotion, setChosenEmotion] = useState({icon:faFaceGrinBeam, color:'#ffc66bff'})
+
+  // Modalities
+  const [openEmotionPicker, setOpenEmotionPicker] = useState(false);
+
   return (
     <View style={styles.container}>
-      <Header title="Daily's" backgroundColorProp='#F8E1CD'/>
-      <ScrollView style={{padding:24}} >
+      <Header title="Daily's" backgroundColorProp='#F8E1CD' paddingProp={24}/>
+      <ScrollView style={{padding:24, marginBottom:24}} showsVerticalScrollIndicator={false}>
         <View style={styles.dayContainer}>
-            <View>
+            <View style={{flex:1}}>
               <SerifText style={{fontSize:24}}>February 3, 2026</SerifText>
               <SerifText style={{fontSize:20}}>Tuesday</SerifText>
-              <SerifText style={{fontSize:16}}>Notes..</SerifText>
+              <TextInput 
+              placeholder='Notes...'
+              multiline
+              style={{fontFamily:'DMSerifDisplay-Regular',fontSize:16, flexWrap:'wrap'}}
+              value={dailyNote}
+              onChangeText={setDailyNote}
+              />
             </View>
 
-            <TouchableOpacity>
-              <FontAwesome6 
-              name='smile'
-              size={45}
-              color='#887747'
-              />
+            <TouchableOpacity
+            style={{backgroundColor:'white', height:45, borderRadius:30}}
+            onPress={() => {setOpenEmotionPicker(true)}}
+            >
+              <FontAwesomeIcon 
+                icon={chosenEmotion.icon}
+                size={45}
+                color={chosenEmotion.color}
+                />
             </TouchableOpacity>
+            {/** Pick Emotion */}
+            <Modal
+            visible={openEmotionPicker}
+            onRequestClose={() => setOpenEmotionPicker(false)}
+            transparent
+            >
+              <Pressable 
+              style={{...StyleSheet.absoluteFillObject,}}
+              onPress={() => {setOpenEmotionPicker(false)}}
+              />
+                <EmotionPicker onSelect={setChosenEmotion}/>
+            </Modal>
         </View>
 
         {/**eventType:event */}
@@ -77,12 +106,12 @@ const DailyTodays = () => {
             )}
             {item.eventType === 'task' && (
               <Task 
-              id={'1'}
+              // id={'1'}
               title={item.title}
               time={item.time}
               taskTodo ={item.notes}
               taskChecked={false}
-              onToggle={() => {}}
+              // onToggle={() => {}}
               />
             )}
           </View>
@@ -97,7 +126,7 @@ const DailyTodays = () => {
 
 export default DailyTodays;
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     container:{
         backgroundColor:'#F8E1CD',
         flex:1,

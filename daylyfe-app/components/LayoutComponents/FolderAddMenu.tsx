@@ -1,11 +1,27 @@
 import { StyleSheet, View, TouchableOpacity, Modal, Pressable} from 'react-native'
 import { useState } from 'react';
-import SerifText from './SerifText';
+import SerifText from '../SerifText';
 import React from 'react'
+import { useRouter } from 'expo-router';
 import { FontAwesome6 } from '@expo/vector-icons'
 
-const NotesAddMenu = () => {
+interface notesAddMenuProps {
+    
+}
+
+// TODO:Delete the note
+const deleteNote = () => {
+
+}
+
+//TODO:Update db to move note to a different folder
+const addNoteToFolder = () => {
+
+}
+
+const FolderAddMenu = ({}: notesAddMenuProps) => {
   const [openMenu, setOpenMenu] = useState(false);
+  const router = useRouter();
 
   return (
     <View style={styles.container}>
@@ -27,27 +43,18 @@ const NotesAddMenu = () => {
             >
                 <Pressable style={styles.opacityBox}/>
                 <View style={styles.modalBox}>
-                    <View style={styles.buttonsBoxRow}>
-                        <SerifText style={{fontSize:18}}>Add to Folder</SerifText>
-                        <TouchableOpacity 
-                            onPress={() => {}}
-                            style={[styles.buttons, {backgroundColor:'#DDBAD9',}]}
-                        >
-                            <FontAwesome6
-                            name="folder-plus"
-                            size={25}
-                            />
-                        </TouchableOpacity>
-                    </View>
 
                     <View style={styles.buttonsBoxRow}>
-                        <SerifText style={{fontSize:18}}>Pin</SerifText>
-                        <TouchableOpacity 
-                            onPress={() => {}}
-                            style={[styles.buttons, {backgroundColor:'#F9D69E',}]}
+                        <SerifText style={{fontSize:18}}>Note</SerifText>
+                    <TouchableOpacity 
+                        onPress={() => {
+                            setOpenMenu(false)
+                            router.push('/(NotesStack)/NewNote')
+                        }}
+                        style={[styles.buttons, {backgroundColor:'#BBE6F1',}]}
                         >
                             <FontAwesome6
-                            name="thumbtack"
+                            name="note-sticky"
                             size={25}
                             />
                         </TouchableOpacity>
@@ -61,7 +68,7 @@ const NotesAddMenu = () => {
                         >
                             <FontAwesome6
                             name="angles-right"
-                            size={25}
+                            size={20}
                             />
                         </TouchableOpacity>
                     </View>
@@ -74,10 +81,9 @@ const NotesAddMenu = () => {
                         >
                             <FontAwesome6
                             name="trash-can"
-                            size={25}
+                            size={20}
                             />
                         </TouchableOpacity>
-
                     </View>
 
                     <View style={styles.buttonsBoxRow}>
@@ -91,13 +97,14 @@ const NotesAddMenu = () => {
                             />
                         </TouchableOpacity>
                     </View>
+
                 </View>
             </Modal>
         </View>
   )
 }
 
-export default NotesAddMenu;
+export default FolderAddMenu;
 
 const styles = StyleSheet.create({
     container:{
@@ -117,10 +124,9 @@ const styles = StyleSheet.create({
     modalBox:{
         position:'absolute',
         right: 38,
-        bottom: 65, // height of footer\
-        marginVertical:8,
+        bottom: 75, // height of footer\
         justifyContent:'space-evenly',
-        height:240
+        height:180
     },
     opacityBox:{
         ...StyleSheet.absoluteFillObject,

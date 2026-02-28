@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
-import BudgetCategories from "@/components/BudgetCategories";
+import BudgetCategories from "@/components/BudgetComponents/BudgetCategories";
 
 //Footer and Layouts
-import ScreenLayout from "@/components/ScreenLayout";
-import GeneralAddMenu from "@/components/GeneralAddMenu";
+import ScreenLayout from "@/components/LayoutComponents/ScreenLayout";
+import GeneralAddMenu from "@/components/LayoutComponents/GeneralAddMenu";
 
 export default function index() {
 

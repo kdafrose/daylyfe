@@ -7,15 +7,13 @@ import { AdvancedCheckbox } from 'react-native-advanced-checkbox';
 import React, {FC, useState} from 'react'
 
 interface TaskProps{
-    id:string
     title:string,
     time:string,
     taskTodo:string,
     taskChecked:boolean,
-    onToggle: (id:string) => void;
 }
 
-const Task:FC<TaskProps> = ({id, title, time, taskTodo, taskChecked, onToggle}) => {
+const Task:FC<TaskProps> = ({title, time, taskTodo, taskChecked}) => {
     const [checked,setChecked] = useState(false);
     const [taskDescription, setTaskDescription] = useState('')
     const [contentHeight, setContentHeight] = useState(0);
@@ -52,9 +50,6 @@ const Task:FC<TaskProps> = ({id, title, time, taskTodo, taskChecked, onToggle}) 
             checkedColor='#F6BFBF'
             />
             <SerifText style={{fontSize:14, paddingLeft:6}}>{taskTodo}</SerifText>
-            <TextInput 
-            
-            />
         </View>
         </View>
     </View>
