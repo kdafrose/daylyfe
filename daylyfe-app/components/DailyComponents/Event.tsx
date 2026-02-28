@@ -1,10 +1,11 @@
-import { StyleSheet, View, TouchableOpacity, FlatList } from 'react-native'
+import { StyleSheet, View, TouchableOpacity, FlatList, Modal } from 'react-native'
 import DashedLine from 'react-native-dashed-line'
 import { AdvancedCheckbox } from 'react-native-advanced-checkbox'
 import SerifText from '../SerifText'
 import React, {FC, useState} from 'react'
 import { FontAwesome6 } from '@expo/vector-icons'
 import { TextInput } from 'react-native-gesture-handler'
+import LinkNotesMenu from '../NotesComponents/LinkNotesMenu'
 
 interface EventProps {
     eventTitle:string,
@@ -34,6 +35,8 @@ const sampleTodoDate = [ // Needs a foreign key of Event table to grab
 const Event:FC<EventProps> = ({eventTitle, time, notes, color, taskNum}) => {
     const [todos,setTodos] = useState<todoProps[]>(sampleTodoDate); // HARDCODED
     const [contentHeight, setContentHeight] = useState(0)
+
+    const [openLinkNotesMenu, setOpenLinkNotesMenu] = useState(false);
     
     function handleAddTodo() {
         // will persist to the database
@@ -91,6 +94,7 @@ const Event:FC<EventProps> = ({eventTitle, time, notes, color, taskNum}) => {
                 style={styles.todoButtonBox}
                 onPress={()=>{
                     //TODO: link an existing note from the notes library
+                    setOpenLinkNotesMenu(true);
                 }}
                 >
                     <FontAwesome6 
@@ -101,6 +105,13 @@ const Event:FC<EventProps> = ({eventTitle, time, notes, color, taskNum}) => {
                 </TouchableOpacity>
 
             </View>
+
+            <Modal 
+            visible={openLinkNotesMenu}
+            onRequestClose={() => setOpenLinkNotesMenu(false)}
+            >
+                <LinkNotesMenu setCloseLinkNotes={setOpenLinkNotesMenu}/>
+            </Modal>
 
             <FlatList 
                 data={todos}
