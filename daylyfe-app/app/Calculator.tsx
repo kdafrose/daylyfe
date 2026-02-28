@@ -1,7 +1,8 @@
 import { StyleSheet,TouchableOpacity, View } from 'react-native'
 import { FontAwesome6 } from '@expo/vector-icons'
-import { use, useState } from 'react'
+import { useState } from 'react'
 import React from 'react'
+import DrawerHeader from '@/components/LayoutComponents/DrawerHeader'
 import ScreenLayout from '@/components/LayoutComponents/ScreenLayout'
 import SerifText from '@/components/SerifText'
 
@@ -90,6 +91,8 @@ const Calculator = () => {
   return (
     <ScreenLayout>
       {/**Calculation Screen */}
+      <DrawerHeader title='' backgroundColorProp='' paddingProp={24} paddingLeftProp={0}/>
+
       <View style={styles.calculateBox}>
 
         <View style={[styles.answersBox,{height:220}]}>
@@ -370,7 +373,7 @@ const styles = StyleSheet.create({
     justifyContent:'center'
   },
   calculateBox:{
-    height:320,
+    height:340,
     padding:24,
     justifyContent:'flex-end',
     alignItems:'flex-end'

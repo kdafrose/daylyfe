@@ -59,7 +59,7 @@ export default function RootLayout() {
         options={{
           drawerLabel:'Budget',
           title:'Budget',
-          headerShown:true,
+          headerShown:false,
           headerStyle:{
             backgroundColor:'#F8E1CD',
             shadowColor:'transparent'
@@ -71,7 +71,14 @@ export default function RootLayout() {
         options={{ 
           drawerLabel:'Calculator',
           title:'Calculator',
-          headerShown:true
+          headerShown:false
+        }}
+        />
+        <Drawer.Screen 
+        name="WaterTracker"
+        options={{
+          title:"Water Tracker",
+          headerShown:false
         }}
         />
       </Drawer>
