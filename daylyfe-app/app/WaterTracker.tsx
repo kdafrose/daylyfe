@@ -1,5 +1,5 @@
 import { StyleSheet, View, TouchableOpacity, Modal, Pressable } from 'react-native'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { styles as eventStyles } from './(CalendarStack)/AddCalendarEvent'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
@@ -23,40 +23,49 @@ const waterOptions = [
 ]
 
 const WaterTracker = () => {
-  const [addWaterAmount, setAddWaterAmount] = useState('100ml'); 
-  const [progress, setProgress] = useState(0);
-  const [chosenWater, setChosenWater] = useState(0);
+  // UI variables
+  const waterGoal = 3 // TODO: Must get this from the Backend
   const [openWaterAmountMenu, setOpenWaterAmountMenu] = useState(false)
+  const [addWaterAmount, setAddWaterAmount] = useState('100ml');
+  
+  // Adding water variables
+  const [total, setTotal] = useState(0);
+  const [chosenAmount, setChosenAmount] = useState(0);
+  const [progress, setProgress] = useState(0);
 
-  const addWater = (amount:number) => {
+  // useEffect(() => {
+    //TODO: Grab from the backend..
+  // })
+
+  const addWater = (currentTotal:number, progress:number) => {
     //TODO: Add this to the backend
-    // water amount and progress
   }
 
   return (
     <ScreenLayout>
       <DrawerHeader title="Water Tracker" backgroundColorProp='' paddingProp={12} paddingLeftProp={0} />
+      {/** Cup SVG */}
       <View style={styles.cupContainer}>
-        <WaterCup progress={12}/>
+        <WaterCup progress={progress}/>
         <View style={styles.overlay}>
-          <WaterFace progress={12} />
-          <SerifText style={styles.textBig}>12%</SerifText>
+          <WaterFace progress={progress} />
+          <SerifText style={styles.textBig}>{progress.toFixed(2)}%</SerifText>
         </View>
       </View>
-
+    {/** Water Tracker Board */}
       <View style={styles.trackerBoard}>
-        <View>
+        <View style={{alignItems:'center'}}>
           <SerifText style={styles.textBig}>Now</SerifText>
-          <SerifText style={styles.textBig}>0.84L</SerifText>
+          <SerifText style={styles.textBig}>{total.toFixed(2)}L</SerifText>
         </View>
-        <View>
+        <View style={{alignItems:'center'}}>
           <SerifText style={styles.textBig}>Goal</SerifText>
-          <SerifText style={styles.textBig}>3.0L</SerifText>
+          <SerifText style={styles.textBig}>{waterGoal}L</SerifText>
         </View>
       </View>
 
+      {/** Buttons and amount modalities */}
       <View style={styles.amountWaterBox}>
-
         <TouchableOpacity 
         style={styles.amountButton}
         onPress={() => setOpenWaterAmountMenu(true)}
@@ -87,12 +96,12 @@ const WaterTracker = () => {
               data={waterOptions}
               showsVerticalScrollIndicator={false}
               keyExtractor={(item) => item.key}
-              renderItem={({item, index}) => {
+              renderItem={({item}) => {
                 return (
                   <TouchableOpacity
                   onPress={() => {
                     setAddWaterAmount(item.key)
-                    //setChosenWater(waterOptions[index])
+                    setChosenAmount(item.amount)
                     setOpenWaterAmountMenu(false)
                   }}
                   style={[eventStyles.alertOptionsButtons]}
@@ -109,7 +118,12 @@ const WaterTracker = () => {
 
         <TouchableOpacity 
         style={[styles.amountButton, {paddingVertical:6, width:80}]}
-        // onPress={() => addWater()}
+        onPress={() => {
+          const newTotal = total + chosenAmount;
+          setTotal(newTotal);
+          setProgress((newTotal / waterGoal) * 100);
+          // addWater();
+        }}
         >
           <SerifText>add</SerifText>
         </TouchableOpacity>
