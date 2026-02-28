@@ -71,21 +71,36 @@ const Event:FC<EventProps> = ({eventTitle, time, notes, color, taskNum}) => {
                 <SerifText style={styles.time}>{time}</SerifText>
                 <SerifText style={styles.notesBox}>{notes}</SerifText>
             </View>
-            <TouchableOpacity 
-            style={styles.todoButtonBox}
-            onPress={() => setTodos(todos.concat({
-                todoTask:'',
-                isChecked:false
-            }))}
-            >
-                {/* <View style={styles.checkBox}></View> */}
-                <FontAwesome6 
-                name='plus'
-                size={15}
-                color='#FF6868'
-                />
-                <SerifText>Add To Do</SerifText>
-            </TouchableOpacity>
+            <View style={{flexDirection:'row', gap:24}}>
+                <TouchableOpacity 
+                style={styles.todoButtonBox}
+                onPress={() => setTodos(todos.concat({
+                    todoTask:'',
+                    isChecked:false
+                }))}
+                >
+                    <FontAwesome6 
+                    name='plus'
+                    size={15}
+                    color='#FF6868'
+                    />
+                    <SerifText>Add To Do</SerifText>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                style={styles.todoButtonBox}
+                onPress={()=>{
+                    //TODO: link an existing note from the notes library
+                }}
+                >
+                    <FontAwesome6 
+                    name='paperclip'
+                    size={16}
+                    />
+                    <SerifText>Link Note</SerifText>
+                </TouchableOpacity>
+
+            </View>
 
             <FlatList 
                 data={todos}
