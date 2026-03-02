@@ -2,10 +2,13 @@ import { StyleSheet, View, TouchableOpacity, FlatList, Modal } from 'react-nativ
 import DashedLine from 'react-native-dashed-line'
 import { AdvancedCheckbox } from 'react-native-advanced-checkbox'
 import SerifText from '../SerifText'
+import { useRouter } from 'expo-router'
 import React, {FC, useState} from 'react'
 import { FontAwesome6 } from '@expo/vector-icons'
 import { TextInput } from 'react-native-gesture-handler'
 import LinkNotesMenu from '../NotesComponents/LinkNotesMenu'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faPaperclip } from '@fortawesome/free-solid-svg-icons'
 
 interface EventProps {
     eventTitle:string,
@@ -20,6 +23,11 @@ interface todoProps{
     isChecked:boolean
 }
 
+export interface notesLinkProps{
+    id:number,
+    noteTitle:string
+}
+
 const sampleTodoDate = [ // Needs a foreign key of Event table to grab
     {
         todoTask:'Dont forget to do some yoga',
@@ -31,10 +39,11 @@ const sampleTodoDate = [ // Needs a foreign key of Event table to grab
     }
 ]
 
-
 const Event:FC<EventProps> = ({eventTitle, time, notes, color, taskNum}) => {
     const [todos,setTodos] = useState<todoProps[]>(sampleTodoDate); // HARDCODED
     const [contentHeight, setContentHeight] = useState(0)
+    const [linkedNotes, setLinkedNotes] = useState<notesLinkProps[]>([]); 
+    const router = useRouter();
 
     const [openLinkNotesMenu, setOpenLinkNotesMenu] = useState(false);
     
@@ -93,7 +102,6 @@ const Event:FC<EventProps> = ({eventTitle, time, notes, color, taskNum}) => {
                 <TouchableOpacity
                 style={styles.todoButtonBox}
                 onPress={()=>{
-                    //TODO: link an existing note from the notes library
                     setOpenLinkNotesMenu(true);
                 }}
                 >
@@ -103,16 +111,41 @@ const Event:FC<EventProps> = ({eventTitle, time, notes, color, taskNum}) => {
                     />
                     <SerifText>Link Note</SerifText>
                 </TouchableOpacity>
-
             </View>
 
             <Modal 
             visible={openLinkNotesMenu}
             onRequestClose={() => setOpenLinkNotesMenu(false)}
             >
-                <LinkNotesMenu setCloseLinkNotes={setOpenLinkNotesMenu}/>
+                <LinkNotesMenu 
+                setCloseLinkNotes={setOpenLinkNotesMenu}
+                setAddNewNotesLink={(newLink) => setLinkedNotes(prev => [...prev, newLink])}
+                />
             </Modal>
+            {/**Linked Notes */}
+            <View>
+                {linkedNotes.map((item, index) => (
+                     <TouchableOpacity
+                     key={index}
+                        onPress={() => {
+                            router.push({
+                                pathname:'/(NotesStack)/EditNotes',
+                                params: {
+                                    notesId:item.id, // change this
+                                    title:item.noteTitle
+                                }
+                            })
+                        }}
+                        >
+                            <View style={{flexDirection:'row', alignItems:'center', gap:6}}>
+                                <FontAwesomeIcon icon ={faPaperclip} size={12}/>
+                                <SerifText style={{color:'blue'}}>{item.noteTitle}</SerifText>
+                            </View>
+                        </TouchableOpacity>
+                ))}
+            </View>
 
+            {/**ToDos */}
             <FlatList 
                 data={todos}
                 keyExtractor={(_,index) => index.toString()}
@@ -149,7 +182,7 @@ const Event:FC<EventProps> = ({eventTitle, time, notes, color, taskNum}) => {
                             <TouchableOpacity
                             onPress={() => {
                                 deleteTodo(index);
-                            }}
+                            }} 
                             >
                                 <FontAwesome6 
                                     name='x'

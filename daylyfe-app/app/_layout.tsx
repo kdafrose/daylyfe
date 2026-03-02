@@ -1,6 +1,7 @@
 import React from 'react';
 import { Drawer } from 'expo-router/drawer';
 import { useFonts } from 'expo-font';
+import { CommonActions } from '@react-navigation/native';
 
 
 export default function RootLayout() {
@@ -53,6 +54,17 @@ export default function RootLayout() {
           title:'Notes',
           headerShown:false,
         }}
+                listeners={({ navigation }) => ({
+          drawerItemPress: (e) => {
+            e.preventDefault();
+            navigation.dispatch(
+              CommonActions.reset({
+                index: 0,
+                routes: [{ name: '(NotesStack)' }],
+              })
+            );
+          },
+        })}
         />
         <Drawer.Screen 
         name='(BudgetStack)'
