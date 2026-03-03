@@ -53,7 +53,10 @@ const GeneralAddMenu = () => {
                         <TouchableOpacity 
                             onPress={() => {
                                 setOpenMenu(false);
-                                router.push('/AddCalendarTask');
+                                router.replace('/(CalendarStack)/CalendarHome')
+                                setTimeout(() => {
+                                    router.push('/(CalendarStack)/AddCalendarTask')
+                                },0)
                             }}
                             style={[styles.buttons, {backgroundColor:'#F9D69E',}]}
                         >
@@ -69,7 +72,10 @@ const GeneralAddMenu = () => {
                     <TouchableOpacity 
                         onPress={() => {
                             setOpenMenu(false)
-                            router.push('/(NotesStack)/NewNote')
+                            router.replace('/(NotesStack)/NotesHome')
+                            setTimeout(() => {
+                                router.push('/(NotesStack)/NewNote')
+                            })
                         }}
                         style={[styles.buttons, {backgroundColor:'#BBE6F1',}]}
                         >
@@ -85,7 +91,10 @@ const GeneralAddMenu = () => {
                     <TouchableOpacity 
                         onPress={() => {
                             setOpenMenu(false)
-                            router.push('/(NotesStack)/AddNewFolder')
+                            router.replace('/(NotesStack)/NotesHome')
+                            setTimeout(() => {
+                                router.push('/(NotesStack)/AddNewFolder')
+                            })
                         }}
                         style={[styles.buttons, {backgroundColor:'#D0E4A1',}]}
                         >
