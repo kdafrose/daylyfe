@@ -32,7 +32,12 @@ const CalendarAddMenu = () => {
                     <View style={styles.buttonsBoxRow}>
                         <SerifText style={{fontSize:18}}>Event</SerifText>
                         <TouchableOpacity 
-                            onPress={() => {router.push('/AddCalendarEvent')}}
+                            onPress={() => {
+                                router.replace('/(CalendarStack)/CalendarHome')
+                                setTimeout(() => {
+                                    router.push('/(CalendarStack)/AddCalendarEvent')
+                                })
+                            }}
                             style={[styles.buttons, {backgroundColor:'#DDBAD9',}]}
                         >
                             <FontAwesome6
@@ -45,24 +50,16 @@ const CalendarAddMenu = () => {
                     <View style={styles.buttonsBoxRow}>
                         <SerifText style={{fontSize:18}}>Task</SerifText>
                         <TouchableOpacity 
-                            onPress={() => {router.push('/AddCalendarTask')}}
+                            onPress={() => {
+                                router.replace('/(CalendarStack)/CalendarHome')
+                                setTimeout(() => {
+                                    router.push('/(CalendarStack)/AddCalendarTask')
+                                })
+                            }}
                             style={[styles.buttons, {backgroundColor:'#F9D69E',}]}
                         >
                             <FontAwesome6
                             name="circle-check"
-                            size={25}
-                            />
-                        </TouchableOpacity>
-                    </View>
-
-                    <View style={styles.buttonsBoxRow}>
-                        <SerifText style={{fontSize:18}}>Add Note</SerifText>
-                    <TouchableOpacity 
-                        onPress={() => {}}
-                        style={[styles.buttons, {backgroundColor:'#CDDEFF',}]}
-                        >
-                            <FontAwesome6
-                            name="paperclip"
                             size={25}
                             />
                         </TouchableOpacity>

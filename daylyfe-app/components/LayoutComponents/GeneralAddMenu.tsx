@@ -34,7 +34,10 @@ const GeneralAddMenu = () => {
                         <TouchableOpacity 
                             onPress={() => {
                                 setOpenMenu(false)
-                                router.push('/AddCalendarEvent')
+                                router.replace('/(CalendarStack)/CalendarHome')
+                                setTimeout(() => {
+                                    router.push('/AddCalendarEvent')
+                                },0)
                             }}
                             style={[styles.buttons, {backgroundColor:'#DDBAD9',}]}
                         >

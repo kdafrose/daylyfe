@@ -1,8 +1,10 @@
 import { StyleSheet, View, TouchableOpacity, Modal, Pressable} from 'react-native'
 import { useState } from 'react';
 import SerifText from '../SerifText';
+import { styles as eventStyles } from '@/app/(CalendarStack)/AddCalendarEvent';
 import React from 'react'
 import { FontAwesome6 } from '@expo/vector-icons'
+import NoteFolderList from '../NotesComponents/NoteFolderList';
 
 interface notesAddMenuProps {
     isPin:boolean,
@@ -21,18 +23,24 @@ const deleteNote = () => {
 }
 
 //TODO:Update db to move note to a folder
-const addNoteToFolder = () => {
+const addNoteToFolder = (folderId:number, folderName:string) => {
+    console.log(`Adding note to folder ${folderName}`)
 
 }
 
+//TODO: Update the db to change folders
+const moveNoteToDiffFolder = (folderId:number, folderName:string) => {
+    console.log(`Moving note to folder ${folderName}`)
+}
 
 
 const NotesAddMenu = ({onPinChange, isPin}: notesAddMenuProps) => {
   const [openMenu, setOpenMenu] = useState(false);
+  const [openNotesFolderList, setOpenNotesFolderList] = useState(false);
+  const [openMoveNotesModal, setOpenMoveNotesModal] = useState(false)
 
   return (
     <View style={styles.container}>
-
         <TouchableOpacity 
         onPress={() => setOpenMenu(true)}
         style={[styles.buttons, {backgroundColor:'#F6BFBF',}]}
@@ -52,8 +60,12 @@ const NotesAddMenu = ({onPinChange, isPin}: notesAddMenuProps) => {
                 <View style={styles.modalBox}>
                     <View style={styles.buttonsBoxRow}>
                         <SerifText style={{fontSize:18}}>Add to Folder</SerifText>
+                        {/** Add to Folder */}
                         <TouchableOpacity 
-                            onPress={() => {}}
+                            onPress={() => {
+                                setOpenNotesFolderList(true)
+                                setOpenMenu(false)
+                            }}
                             style={[styles.buttons, {backgroundColor:'#DDBAD9',}]}
                         >
                             <FontAwesome6
@@ -62,12 +74,13 @@ const NotesAddMenu = ({onPinChange, isPin}: notesAddMenuProps) => {
                             />
                         </TouchableOpacity>
                     </View>
-
+                        {/**Pin Note */}
                     <View style={styles.buttonsBoxRow}>
                         <SerifText style={{fontSize:18}}>Pin</SerifText>
                         <TouchableOpacity 
                             onPress={() => {
                                 onPinChange(!isPin)
+                                setOpenMenu(false);
                             }}
                             style={[styles.buttons, {backgroundColor:'#F9D69E',}]}
                         >
@@ -77,11 +90,14 @@ const NotesAddMenu = ({onPinChange, isPin}: notesAddMenuProps) => {
                             />
                         </TouchableOpacity>
                     </View>
-
+                    {/**Move Note*/}
                     <View style={styles.buttonsBoxRow}>
                         <SerifText style={{fontSize:18}}>Move</SerifText>
                     <TouchableOpacity 
-                        onPress={() => {}}
+                        onPress={() => {
+                            setOpenMoveNotesModal(true)
+                            setOpenMenu(false)
+                        }}
                         style={[styles.buttons, {backgroundColor:'#CDDEFF',}]}
                         >
                             <FontAwesome6
@@ -116,6 +132,47 @@ const NotesAddMenu = ({onPinChange, isPin}: notesAddMenuProps) => {
                             />
                         </TouchableOpacity>
                     </View>
+                </View>
+            </Modal>
+
+            {/**Menu Buttons Modal Functionalities */}
+            {/** Add to Folder */}
+            <Modal
+            visible={openNotesFolderList}
+            onRequestClose={() => setOpenNotesFolderList(false)}
+            >
+                <Pressable 
+                onPress={() => setOpenNotesFolderList(false)}
+                style={styles.opacityBox}
+                />
+                <View style={[eventStyles.container, {marginTop:48}]}>
+                    <SerifText style={eventStyles.titleStyle}>Folders</SerifText>
+                    <NoteFolderList 
+                    onPress={(id:number, folderName:string) => {
+                        addNoteToFolder(id, folderName);
+                        setOpenNotesFolderList(false);
+                        var noteFolder = folderName;
+                    }}
+                    />
+                </View>
+            </Modal>
+            {/**Move to different Folder */}
+            <Modal
+            visible={openMoveNotesModal}
+            onRequestClose={() => setOpenMoveNotesModal(false)}
+            >
+                <Pressable 
+                onPress={() => setOpenMoveNotesModal(false)}
+                style={styles.opacityBox}
+                />
+                <View style={[eventStyles.container, {marginTop:48}]}>
+                    <SerifText style={eventStyles.titleStyle}>Folders</SerifText>
+                    <NoteFolderList 
+                    onPress={(id:number, folderName:string) => {
+                        moveNoteToDiffFolder(id, folderName)
+                        setOpenMoveNotesModal(false)
+                    }}
+                    />
                 </View>
             </Modal>
         </View>

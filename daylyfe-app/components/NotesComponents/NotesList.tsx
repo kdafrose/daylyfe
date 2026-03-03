@@ -46,7 +46,7 @@ const NotesList:FC<NotesListProps> = ({onPress}) => {
 
     const goToNote = (id:number, noteTitle:string) => {
     router.push({
-      pathname:'/EditNotes',
+      pathname:'/(NotesStack)/EditNotes',
       params: {
           notesId:id, // change this
           title:noteTitle

@@ -1,18 +1,25 @@
 import { StyleSheet, TextInput, View, ScrollView, TouchableOpacity} from 'react-native'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faThumbTack, faCheck,} from '@fortawesome/free-solid-svg-icons'
+import { faThumbTack, faCheck, faFolder} from '@fortawesome/free-solid-svg-icons'
 import React, {useState} from 'react'
 import SerifText from '../SerifText'
 import NotesAddMenu from '../LayoutComponents/NotesAddMenu'
 
+/**
+ * This file is used in EditNotes.tsx and NewNote.tsx to allow users to be able to add in text for the title, content,
+ * and interact with the Notes General Menu.
+ */
+
 interface AddNotesProps{
     title:string,
     date:string,
-    noteContent:string
+    noteContent:string,
+    folderName:string,
+    folderColor:string
 }
 
 
-const AddNotes = ({title, date, noteContent}:AddNotesProps) => {
+const AddNotes = ({title, date, noteContent, folderName, folderColor}:AddNotesProps) => {
 
     // TODO:Save the notes
     const saveNote = () => {
@@ -23,6 +30,7 @@ const AddNotes = ({title, date, noteContent}:AddNotesProps) => {
     const [isPinned, setIsPinned] = useState(false); 
     const [noteTitle, setNoteTitle] = useState<string>(title);
     const [note, setNote] = useState(noteContent);
+    
 
   return (
     <View style={{flex:1}}>
@@ -39,6 +47,10 @@ const AddNotes = ({title, date, noteContent}:AddNotesProps) => {
                             placeholder='Add Title...'
                             />
                             <SerifText style={styles.dateStyle}>{date}</SerifText>
+                            <View style={{flexDirection:'row', gap:4}}>
+                                <FontAwesomeIcon icon={faFolder} color={folderColor} size={20}/>
+                                <SerifText style={{fontSize:16}}>{folderName}</SerifText>
+                            </View>
                         </View>
                         <View style={styles.titleButtonsContainer}>
                             {isPinned && (

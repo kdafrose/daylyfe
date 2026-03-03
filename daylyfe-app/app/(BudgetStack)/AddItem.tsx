@@ -1,6 +1,6 @@
 import { StyleSheet, View, TouchableOpacity, TextInput, FlatList } from 'react-native'
 import React, {use, useState} from 'react'
-import { styles as itemStyle} from '../(CalendarStack)/AddCalendarEvent'
+import { styles as itemStyle } from '../(CalendarStack)/AddCalendarEvent'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import SerifText from '@/components/SerifText'

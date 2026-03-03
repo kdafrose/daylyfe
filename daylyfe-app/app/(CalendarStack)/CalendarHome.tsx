@@ -1,7 +1,7 @@
 import { View, StyleSheet, FlatList, TouchableOpacity, ScrollView} from 'react-native'
 import React, {useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { styles as cStyle } from './DailyTodays';
+import { styles as cStyle } from '../DailyTodays';
 import { faFaceGrinBeam } from '@fortawesome/free-solid-svg-icons';
 import CalendarHeader from '@/components/LayoutComponents/CalendarHeader';
 import CalendarMonth from '@/components/CalendarComponents/CalendarMonth';

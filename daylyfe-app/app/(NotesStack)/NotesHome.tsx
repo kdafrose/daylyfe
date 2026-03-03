@@ -1,20 +1,13 @@
-import { StyleSheet, View, ScrollView, FlatList, TouchableOpacity } from 'react-native'
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faFolder } from '@fortawesome/free-solid-svg-icons';
+import { StyleSheet, View, ScrollView} from 'react-native'
 import NotesList from '@/components/NotesComponents/NotesList';
 import PinnedNotes from '@/components/NotesComponents/PinnedNotes';
+import NoteFolderList from '@/components/NotesComponents/NoteFolderList';
 import DrawerHeader from '@/components/LayoutComponents/DrawerHeader';
 import React from 'react'
 import SerifText from '@/components/SerifText'
-import { useRouter } from 'expo-router';
 
-
-
-const sampleFolders = ["Work Meeting Notes", "Workouts Routines 2026"]
 
 const NotesHome = () => {
-  const router = useRouter();
-  
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -28,24 +21,7 @@ const NotesHome = () => {
           {/**Folders */}
           <View style={styles.sectionBox}>
             <SerifText style={styles.titleStyle}>Folders</SerifText>
-              <View style={{flexWrap:'wrap', flexDirection:'row'}}>
-                {sampleFolders.map((item, index) => (
-                  <TouchableOpacity 
-                  key={index} 
-                  style={{gap:1, marginRight:12}}
-                  onPress={() => {router.push({
-                    pathname:'/(NotesStack)/NotesFolder',
-                    params: {
-                      folderId:index,
-                      folderName:item
-                    }
-                  })}}
-                  >
-                    <FontAwesomeIcon icon={faFolder} size={85} color='#F9D69E'/>
-                    <SerifText style={{fontSize:12, width:80}}>{item}</SerifText>
-                  </TouchableOpacity>
-                ))}
-              </View>
+              <NoteFolderList />
           </View>
           {/**Year */}
           <View style={styles.sectionBox}>

@@ -53,9 +53,8 @@ const Header:FC<HeaderProps> = ({title, backgroundColorProp, paddingProp}) => {
     // }
 const backRoute = () => {
     if (router.canGoBack()) {
-        router.back(); // Let expo-router handle it naturally
+        router.back(); 
     } else {
-        // Only hits here if there's truly no history (e.g. deep link)
         router.replace('/');
     }
 }

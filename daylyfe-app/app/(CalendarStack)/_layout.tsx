@@ -72,7 +72,7 @@ export default function CalendarHomeLayout() {
         }} 
         />
 
-        <Stack.Screen 
+        {/* <Stack.Screen 
         name="DailyTodays" 
         options={{ 
         headerTitle: "Daily's",
@@ -99,7 +99,7 @@ export default function CalendarHomeLayout() {
         />
         )
         }}
-        />
+        /> */}
       </Stack>
       {renderMenu()}
       </ScreenLayout>

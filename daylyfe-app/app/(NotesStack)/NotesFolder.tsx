@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { styles as fStyles } from './NotesHome';
-import { colorEventTags as notesColors } from '../(CalendarStack)/AddCalendarEvent';
+import { colorEventTags as notesColors} from '../(CalendarStack)/AddCalendarEvent';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import SerifText from '@/components/SerifText';
 import Header from '@/components/LayoutComponents/Header';

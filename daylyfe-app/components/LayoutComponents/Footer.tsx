@@ -17,7 +17,11 @@ const Footer = () => {
                 <TouchableOpacity 
                 style={styles.todayButton}
                 onPress={()=> {
-                    router.push('/(CalendarStack)/DailyTodays') 
+                    // router.replace('/(CalendarStack)/CalendarHome'); // reset to home first
+                    // setTimeout(() => {
+                    //     router.push('/(CalendarStack)/DailyTodays'); // then push on top
+                    // }, 0);
+                    router.push('/DailyTodays')
                 }}
                 >
                     <SerifText style={{fontSize:14}}>today</SerifText>

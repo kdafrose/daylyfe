@@ -93,6 +93,14 @@ export default function RootLayout() {
           headerShown:false
         }}
         />
+        <Drawer.Screen 
+        name='DailyTodays'
+        options={{
+          drawerItemStyle:{
+            display:'none'
+          }
+        }}
+        />
       </Drawer>
   );
 }
