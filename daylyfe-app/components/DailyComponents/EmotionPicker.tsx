@@ -3,7 +3,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faFaceGrinBeam, faFaceMeh, faFaceFrown, faFaceSadCry, faFaceGrinSquint, faFaceGrinHearts, faFaceAngry, faFaceRollingEyes, faFaceGrinStars, faFaceGrimace, IconDefinition } from '@fortawesome/free-solid-svg-icons'
 
-const emotions = [
+export const emotions = [
   { key: 'happy', icon: faFaceGrinBeam, color: '#FFC66B' },
   { key: 'excited', icon: faFaceGrinSquint, color: '#DDBAD9' },
   { key: 'flirty', icon: faFaceGrinHearts, color: '#F6BFBF' },

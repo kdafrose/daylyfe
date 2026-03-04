@@ -43,7 +43,7 @@ const WaterTracker = () => {
 
   return (
     <ScreenLayout>
-      <DrawerHeader title="Water Tracker" backgroundColorProp='' paddingProp={12} paddingLeftProp={0} />
+      <DrawerHeader title="Water Tracker" backgroundColorProp='' paddingProp={24} paddingLeftProp={0} />
       {/** Cup SVG */}
       <View style={styles.cupContainer}>
         <WaterCup progress={progress}/>
