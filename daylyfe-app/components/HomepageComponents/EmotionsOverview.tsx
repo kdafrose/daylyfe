@@ -27,12 +27,12 @@ const EmotionsOverview:FC<EmotionsOverviewProps> = ({type, date}) => {
 
   return (
    <View>
-        <View style={{alignItems:'center'}}>
+        <View style={{alignItems:'center', marginVertical:6}}>
             <SerifText style={eventStyles.textStyle}>March 3, 2026 - March 9, 2026</SerifText>
         </View>
         {type === "week" && 
             <View style={styles.weekContainer}>
-                <View style={{gap:4}}>
+                <View style={{gap:6}}>
                     <View style={styles.emotionRow}>
                         {sampleWeek.map((item, index) => (
                             <FontAwesomeIcon 
@@ -66,6 +66,8 @@ const styles = StyleSheet.create({
         backgroundColor:'white',
         borderRadius:20,
         padding:12,
+        paddingVertical:12,
+        borderWidth:0.8
     },
     weekContents:{
         flexDirection:'row',

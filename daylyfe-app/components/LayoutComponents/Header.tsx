@@ -39,18 +39,6 @@ const Header:FC<HeaderProps> = ({title, backgroundColorProp, paddingProp}) => {
         }
     }
 
-    // const backRoute = () => {
-    //     switch(routeName){
-    //         case '/AddNewFolder':
-    //         case '/NewNote':
-    //             return router.push('/(NotesStack)/NotesHome')
-    //         case '/(NotesStack)/EditNotes':
-    //         case '/(NotesStack)/NotesFolder':
-    //             return router.back()
-    //         default:
-    //             return router.push('/(CalendarStack)/CalendarHome')
-    //     }
-    // }
 const backRoute = () => {
     if (router.canGoBack()) {
         router.back(); 

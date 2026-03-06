@@ -94,7 +94,7 @@ export default function RootLayout() {
         }}
         />
         <Drawer.Screen 
-        name='DailyTodays'
+        name='(TodayStack)'
         options={{
           drawerItemStyle:{
             display:'none'

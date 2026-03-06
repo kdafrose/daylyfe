@@ -128,8 +128,8 @@ const Event:FC<EventProps> = ({eventTitle, time, notes, color, taskNum}) => {
                      <TouchableOpacity
                      key={index}
                         onPress={() => {
-                            router.push({
-                                pathname:'/(NotesStack)/EditNotes',
+                            router.navigate({
+                                pathname:'/(TodayStack)/PreviewNote',
                                 params: {
                                     notesId:item.id, // change this
                                     title:item.noteTitle

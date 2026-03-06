@@ -29,7 +29,7 @@ const sampleSched = [
 ]
 
 export default function index() {
-  let currentDate = new Date().toLocaleDateString()
+  const currentDate = new Date().toLocaleDateString()
 
   // useEffect(() => {
   //   //TODO: Grab the events/tasks, pinned notes, budget for the day, and emotions of the week/month
@@ -42,7 +42,7 @@ export default function index() {
         <View style={{gap:12}}>
           {/**Today's Schedule */}
           <View>
-            <SerifText style={eventStyles.titleStyle}>Today's Schedule</SerifText>
+            <SerifText style={eventStyles.titleStyle}>Today's Schedule 📝</SerifText>
             <SerifText style={eventStyles.textStyle}>{currentDate}</SerifText>
             {sampleSched.map((item, index) => (
               <View 

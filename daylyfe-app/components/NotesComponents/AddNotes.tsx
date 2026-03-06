@@ -47,7 +47,7 @@ const AddNotes = ({title, date, noteContent, folderName, folderColor}:AddNotesPr
                             placeholder='Add Title...'
                             />
                             <SerifText style={styles.dateStyle}>{date}</SerifText>
-                            <View style={{flexDirection:'row', gap:4}}>
+                            <View style={{flexDirection:'row', gap:4, alignItems:'center'}}>
                                 <FontAwesomeIcon icon={faFolder} color={folderColor} size={20}/>
                                 <SerifText style={{fontSize:16}}>{folderName}</SerifText>
                             </View>
@@ -86,7 +86,7 @@ const AddNotes = ({title, date, noteContent, folderName, folderColor}:AddNotesPr
 
 export default AddNotes
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     container:{
         ...StyleSheet.absoluteFillObject,
         backgroundColor:'#F8E1CD',

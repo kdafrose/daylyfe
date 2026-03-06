@@ -17,13 +17,13 @@ const Footer = () => {
                 <TouchableOpacity 
                 style={styles.todayButton}
                 onPress={()=> {
-                    router.push('/DailyTodays')
+                    router.navigate('/DailyTodays')
                 }}
                 >
                     <SerifText style={{fontSize:14}}>today</SerifText>
                 </TouchableOpacity>
                 <TouchableOpacity
-                onPress={() => router.push('/Calculator')}
+                onPress={() => router.navigate('/Calculator')}
                 >
                     <FontAwesome5 
                     name="calculator" 
