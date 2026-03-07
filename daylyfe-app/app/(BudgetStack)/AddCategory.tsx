@@ -6,7 +6,6 @@ import { styles as cStyles } from './AddItem'
 import { styles as eventStyles } from '../(CalendarStack)/AddCalendarEvent'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-import { EmojiPopup } from 'react-native-emoji-popup';
 
 interface AddCategoryProps{
     setCloseAddCategory: (goBack:boolean) => void

@@ -39,32 +39,26 @@ const Header:FC<HeaderProps> = ({title, backgroundColorProp, paddingProp}) => {
         }
     }
 
-    const backRoute = () => {
-        switch(routeName){
-            case '/AddNewFolder':
-            case '/NewNote':
-                return router.push('/(NotesStack)/NotesHome')
-            case '/EditNotes':
-            case '/NotesFolder':
-                return router.back()
-            default:
-                return router.push('/(CalendarStack)/CalendarHome')
-        }
+const backRoute = () => {
+    if (router.canGoBack()) {
+        router.back(); 
+    } else {
+        router.replace('/');
     }
+}
 
   return (
     <View style={[styles.container, {backgroundColor:backgroundColorProp, padding:paddingProp,}]}>
         <View style={styles.header}>
-            <TouchableOpacity>
+            <TouchableOpacity
+            onPress={() => {
+                backRoute()
+            }}
+            >
                 <Ionicons
                     name="chevron-back"
                     size={24}
                     style={{display:showBack()}}
-                    // pointerEvents={showBack()}
-                    onPress={() => {
-                        backRoute();
-                        // router.push('/(CalendarStack)/CalendarHome');
-                    }}
                 />
             </TouchableOpacity>
 
@@ -73,7 +67,6 @@ const Header:FC<HeaderProps> = ({title, backgroundColorProp, paddingProp}) => {
                 <Ionicons
                     name="menu"
                     style={{ display:showDrawer()}}
-                    // pointerEvents='none'
                     size={24}
                     onPress={() => {
                     navigation.dispatch(DrawerActions.toggleDrawer())}

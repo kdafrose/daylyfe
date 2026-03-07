@@ -14,6 +14,8 @@ const NewNote = () => {
         title=''
         date={dateOnlyString}
         noteContent=''
+        folderName='Notes'
+        folderColor='#F9D69E'
         />
     </View>
   )

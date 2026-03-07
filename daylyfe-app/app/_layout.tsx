@@ -1,6 +1,7 @@
 import React from 'react';
 import { Drawer } from 'expo-router/drawer';
 import { useFonts } from 'expo-font';
+import { CommonActions } from '@react-navigation/native';
 
 
 export default function RootLayout() {
@@ -31,7 +32,7 @@ export default function RootLayout() {
           options={{ 
             drawerLabel:'Home',
             title:'Home',
-            headerShown:true
+            headerShown:false
           }}
         />
         <Drawer.Screen 
@@ -53,6 +54,17 @@ export default function RootLayout() {
           title:'Notes',
           headerShown:false,
         }}
+                listeners={({ navigation }) => ({
+          drawerItemPress: (e) => {
+            e.preventDefault();
+            navigation.dispatch(
+              CommonActions.reset({
+                index: 0,
+                routes: [{ name: '(NotesStack)' }],
+              })
+            );
+          },
+        })}
         />
         <Drawer.Screen 
         name='(BudgetStack)'
@@ -79,6 +91,30 @@ export default function RootLayout() {
         options={{
           title:"Water Tracker",
           headerShown:false
+        }}
+        />
+        <Drawer.Screen 
+        name='(TodayStack)'
+        options={{
+          drawerItemStyle:{
+            display:'none'
+          }
+        }}
+        />
+        <Drawer.Screen 
+        name='Signin'
+        options={{
+          drawerItemStyle:{
+            display:'none'
+          }
+        }}
+        />
+        <Drawer.Screen 
+        name='Onboarding'
+        options={{
+          drawerItemStyle:{
+            display:'none'
+          }
         }}
         />
       </Drawer>

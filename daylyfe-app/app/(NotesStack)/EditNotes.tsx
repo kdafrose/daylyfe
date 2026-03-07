@@ -28,6 +28,8 @@ const EditNotes = () => {
         title={sampleNote[0].title}
         date={sampleNote[0].date}
         noteContent={sampleNote[0].note}
+        folderName='Recipes'
+        folderColor='#F9D69E'
         />
     </View>
   )
