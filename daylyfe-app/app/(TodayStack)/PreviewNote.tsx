@@ -6,10 +6,14 @@ import { faFolder } from '@fortawesome/free-solid-svg-icons'
 import GeneralAddMenu from '@/components/LayoutComponents/GeneralAddMenu'
 import ScreenLayout from '@/components/LayoutComponents/ScreenLayout'
 import React from 'react'
+import { useLocalSearchParams } from 'expo-router'
+import { useRouter } from 'expo-router'
 import { styles as eventStyles } from '../(CalendarStack)/AddCalendarEvent'
 import { styles as noteStyles} from '../../components/NotesComponents/AddNotes'
 
 const PreviewNote = () => {
+    const router = useRouter();
+    const {noteId, title} = useLocalSearchParams();
   return (
     <ScreenLayout>
         <Header title='' backgroundColorProp='' paddingProp={24} /> 
@@ -24,7 +28,17 @@ const PreviewNote = () => {
                         <SerifText style={{fontSize:16}}>Folder Name</SerifText>
                     </View>
                 </View>
-                <TouchableOpacity>
+                <TouchableOpacity
+                onPress={() =>{
+                    router.navigate({
+                        pathname:'/(NotesStack)/EditNotes',
+                        params:{
+                            id:noteId,
+                            noteTitle:title
+                        }
+                    })
+                }}
+                >
                     <View style={styles.editButton}>
                         <SerifText style={{fontSize:16}}>Edit</SerifText>
                     </View>

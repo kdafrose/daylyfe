@@ -46,7 +46,6 @@ const backRoute = () => {
         router.replace('/');
     }
 }
-    // const canGoBack = router.canGoBack()
 
   return (
     <View style={[styles.container, {backgroundColor:backgroundColorProp, padding:paddingProp,}]}>

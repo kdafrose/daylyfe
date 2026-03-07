@@ -1,10 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { emotions } from '../DailyComponents/EmotionPicker'
 import { styles as eventStyles } from '@/app/(CalendarStack)/AddCalendarEvent'
-import React, {FC, useEffect} from 'react'
+import React, {FC, useEffect, useState} from 'react'
 import SerifText from '../SerifText'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { JumpingTransition } from 'react-native-reanimated'
 
 /**
  * EmotionsOverview.tsx
@@ -18,41 +17,65 @@ interface EmotionsOverviewProps{
 }
 
 const EmotionsOverview:FC<EmotionsOverviewProps> = ({type, date}) => {
-    let numDaysInMonth = 31;
+    const [numDaysInMonth, setNumDaysInMonth] = useState(31);
     const week = ["S", "M", "T", "W", "Th", "F", "S"]
     const sampleWeek = emotions.slice(0,7)
     useEffect(() => {
         // TODO:grab all emotions in a week or month
+        const currMonth = new Date();
+        const days = new Date(currMonth.getFullYear(), currMonth.getMonth() + 1, 0).getDate();
+        setNumDaysInMonth(days);
     })
 
   return (
    <View>
-        <View style={{alignItems:'center', marginVertical:6}}>
-            <SerifText style={eventStyles.textStyle}>March 3, 2026 - March 9, 2026</SerifText>
-        </View>
         {type === "week" && 
-            <View style={styles.weekContainer}>
-                <View style={{gap:6}}>
-                    <View style={styles.emotionRow}>
-                        {sampleWeek.map((item, index) => (
-                            <FontAwesomeIcon 
-                            key={index}
-                            icon={item.icon}
-                            color={item.color}
-                            size={45}
-                            />
-                        ))}
-                    </View>
-                    <View style={styles.weekContents}>
-                        {week.map((item, index) => (
-                            <SerifText key={index} style={{fontSize:16}}>{item}</SerifText>
-                        ))}
+            <View>
+                <View style={{alignItems:'center', marginVertical:6}}>
+                    <SerifText style={eventStyles.textStyle}>March 3, 2026 - March 9, 2026</SerifText>
+                </View>
+                <View style={styles.weekContainer}>
+                    <View style={{gap:6}}>
+                        <View style={styles.emotionRow}>
+                            {sampleWeek.map((item, index) => (
+                                <FontAwesomeIcon 
+                                key={index}
+                                icon={item.icon}
+                                color={item.color}
+                                size={45}
+                                />
+                            ))}
+                        </View>
+                        <View style={styles.weekContents}>
+                            {week.map((item, index) => (
+                                <SerifText key={index} style={{fontSize:16}}>{item}</SerifText>
+                            ))}
+                        </View>
                     </View>
                 </View>
             </View>
         }
         {type === "month" &&
             <View>
+                <View style={{alignItems:'center', marginVertical:6}}>
+                    <SerifText style={eventStyles.textStyle}>March 2026</SerifText>
+                </View>
+                <View style={[styles.weekContainer, {flexDirection:'row', flexWrap:'wrap'}]}>
+                    {Array.from({length:numDaysInMonth}, (_,index) => {
+                        const item = sampleWeek[index]
+                        return (
+                            <View style={{padding:4}} key={index}>
+                                {item ? 
+                                    <FontAwesomeIcon icon={item.icon} color={item.color} size={42}/>
+                                    :
+                                    <View style={styles.emptyMonthEmotion}>
+                                        <SerifText>{index +1}</SerifText>
+                                    </View>
+                                }
+                            </View>
+                        )
+                    })}
+                </View>
             </View>
         }
    </View>
@@ -77,5 +100,18 @@ const styles = StyleSheet.create({
     emotionRow:{
         flexDirection:'row',
         justifyContent:'space-between'
+    },
+    emptyMonthEmotion:{
+        width:42,
+        height:42,
+        borderRadius:30,
+        backgroundColor:'rgba(138, 148, 166, 0.35)',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    monthEmotion:{
+        padding:4,
+        justifyContent:'center',
+        alignItems:'center'
     }
 })

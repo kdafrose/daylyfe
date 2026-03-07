@@ -76,7 +76,7 @@ export default function index() {
           </View>
           {/**Emotion Week Overview */}
           <View>
-            <EmotionsOverview type="week" date={currentDate}/>
+            <EmotionsOverview type="month" date={currentDate}/>
           </View>
           {/** */}
         </View>

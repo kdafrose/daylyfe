@@ -8,6 +8,7 @@ import CalendarMonth from '@/components/CalendarComponents/CalendarMonth';
 import Event from '@/components/DailyComponents/Event';
 import Task from '@/components/DailyComponents/Task';
 import SerifText from '@/components/SerifText';
+import GeneralAddMenu from '@/components/LayoutComponents/GeneralAddMenu';
 
 const exampleData = [ // these will be sorted on render based on the times
   {
@@ -47,6 +48,7 @@ const CalendarHome = () => {
   },[])
 
   return (
+    <View>
     <ScrollView 
     style={styles.container}
     showsVerticalScrollIndicator={false}
@@ -104,6 +106,8 @@ const CalendarHome = () => {
 
       </View>
     </ScrollView>
+    <GeneralAddMenu />
+    </View>
   );
 }
 
