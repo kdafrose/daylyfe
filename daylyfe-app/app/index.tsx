@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import SerifText from "@/components/SerifText";
 import DrawerHeader from "@/components/LayoutComponents/DrawerHeader";
@@ -31,14 +31,17 @@ const sampleSched = [
 export default function index() {
   const currentDate = new Date().toLocaleDateString()
 
-  // useEffect(() => {
-  //   //TODO: Grab the events/tasks, pinned notes, budget for the day, and emotions of the week/month
-  // })
+  useEffect(() => {
+    //TODO: Grab the events/tasks, pinned notes, budget for the day, and emotions of the week/month
+  },[])
 
   return (
     <ScreenLayout>
         <DrawerHeader title='DayLyfe' backgroundColorProp='' paddingLeftProp={40} paddingProp={24}/>
-      <ScrollView style={styles.container}>
+      <ScrollView 
+      style={styles.container}
+      showsVerticalScrollIndicator={false}
+      >
         <View style={{gap:12}}>
           {/**Today's Schedule */}
           <View>
@@ -60,7 +63,7 @@ export default function index() {
             ))}
           </View>
           {/**Todays Budget */}
-          <SerifText style={eventStyles.titleStyle}>Budget</SerifText>
+          {/* <SerifText style={eventStyles.titleStyle}>Budget</SerifText> */}
           <View style={styles.budgetBox}>
             <DailyBudgetTracker 
             budget={50}
@@ -76,9 +79,12 @@ export default function index() {
           </View>
           {/**Emotion Week Overview */}
           <View>
-            <EmotionsOverview type="month" date={currentDate}/>
+            <EmotionsOverview type="week" date={currentDate}/>
           </View>
-          {/** */}
+          {/**Week Overview for steps and water tracker chart */}
+          <View>
+            {/**TODO: Create once we have the health API */}
+          </View>
         </View>
       </ScrollView>
       <GeneralAddMenu />

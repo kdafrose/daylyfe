@@ -101,6 +101,22 @@ export default function RootLayout() {
           }
         }}
         />
+        <Drawer.Screen 
+        name='Signin'
+        options={{
+          drawerItemStyle:{
+            display:'none'
+          }
+        }}
+        />
+        <Drawer.Screen 
+        name='Onboarding'
+        options={{
+          drawerItemStyle:{
+            display:'none'
+          }
+        }}
+        />
       </Drawer>
   );
 }
