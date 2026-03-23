@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
     container:{
         padding:18,
         paddingBottom:24,
-        backgroundColor:'#F8E1CD'
     },
     footerContentBox:{
         flexDirection:'row',
