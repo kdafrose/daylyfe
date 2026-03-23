@@ -44,7 +44,7 @@ const WaterFace:FC<WaterFaceProps> = ({progress}) => {
 
   return (
     <Animated.View style={[styles.container, animatedStyle]}>
-      <FaceSvg width="120" height="120" />
+      <FaceSvg width={120} height={120} />
     </Animated.View>
   );
 };

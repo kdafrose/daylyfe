@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import { useRouter } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import { useFonts } from 'expo-font';
+import { CommonActions } from '@react-navigation/native';
 
 
 export default function RootLayout() {
@@ -8,7 +10,20 @@ export default function RootLayout() {
   const [fontsLoaded] = useFonts({
       "DMSerifDisplay-Regular": require("../assets/fonts/DMSerifDisplay-Regular.ttf"),
     });
-  if (!fontsLoaded) return null;
+
+  const router = useRouter();
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(false)
+
+   // Redirect once auth state is known and fonts are loaded
+  useEffect(() => {
+    if (!fontsLoaded || isAuthenticated === null) return
+ 
+    if (isAuthenticated) {
+      router.replace('/')          // go to homepage
+    } else {
+      router.replace('/Signin')    // go to sign in
+    }
+  }, [isAuthenticated, fontsLoaded])
 
     return (
       <Drawer
@@ -31,7 +46,7 @@ export default function RootLayout() {
           options={{ 
             drawerLabel:'Home',
             title:'Home',
-            headerShown:true
+            headerShown:false
           }}
         />
         <Drawer.Screen 
@@ -53,6 +68,17 @@ export default function RootLayout() {
           title:'Notes',
           headerShown:false,
         }}
+                listeners={({ navigation }) => ({
+          drawerItemPress: (e) => {
+            e.preventDefault();
+            navigation.dispatch(
+              CommonActions.reset({
+                index: 0,
+                routes: [{ name: '(NotesStack)' }],
+              })
+            );
+          },
+        })}
         />
         <Drawer.Screen 
         name='(BudgetStack)'
@@ -79,6 +105,30 @@ export default function RootLayout() {
         options={{
           title:"Water Tracker",
           headerShown:false
+        }}
+        />
+        <Drawer.Screen 
+        name='(TodayStack)'
+        options={{
+          drawerItemStyle:{
+            display:'none'
+          }
+        }}
+        />
+        <Drawer.Screen 
+        name='Signin'
+        options={{
+          drawerItemStyle:{
+            display:'none'
+          }
+        }}
+        />
+        <Drawer.Screen 
+        name='Onboarding'
+        options={{
+          drawerItemStyle:{
+            display:'none'
+          }
         }}
         />
       </Drawer>

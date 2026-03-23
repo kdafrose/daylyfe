@@ -7,6 +7,7 @@ import DrawerHeader from '@/components/LayoutComponents/DrawerHeader'
 import ScreenLayout from '@/components/LayoutComponents/ScreenLayout'
 import WaterCup from '@/components/WaterTrackerComponents/WaterCup'
 import WaterFace from '@/components/WaterTrackerComponents/WaterFace'
+import GeneralAddMenu from '@/components/LayoutComponents/GeneralAddMenu'
 import SerifText from '@/components/SerifText'
 import { FlatList } from 'react-native-gesture-handler'
 
@@ -43,7 +44,7 @@ const WaterTracker = () => {
 
   return (
     <ScreenLayout>
-      <DrawerHeader title="Water Tracker" backgroundColorProp='' paddingProp={12} paddingLeftProp={0} />
+      <DrawerHeader title="Water Tracker" backgroundColorProp='' paddingProp={24} paddingLeftProp={0} />
       {/** Cup SVG */}
       <View style={styles.cupContainer}>
         <WaterCup progress={progress}/>
@@ -129,6 +130,7 @@ const WaterTracker = () => {
         </TouchableOpacity>
     
       </View>
+      <GeneralAddMenu />
     </ScreenLayout>
   )
 }

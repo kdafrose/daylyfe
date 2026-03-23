@@ -1,13 +1,14 @@
 import { View, StyleSheet, FlatList, TouchableOpacity, ScrollView} from 'react-native'
 import React, {useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { styles as cStyle } from './DailyTodays';
+import { styles as cStyle } from '../(TodayStack)/DailyTodays';
 import { faFaceGrinBeam } from '@fortawesome/free-solid-svg-icons';
 import CalendarHeader from '@/components/LayoutComponents/CalendarHeader';
 import CalendarMonth from '@/components/CalendarComponents/CalendarMonth';
 import Event from '@/components/DailyComponents/Event';
 import Task from '@/components/DailyComponents/Task';
 import SerifText from '@/components/SerifText';
+import GeneralAddMenu from '@/components/LayoutComponents/GeneralAddMenu';
 
 const exampleData = [ // these will be sorted on render based on the times
   {
@@ -47,6 +48,7 @@ const CalendarHome = () => {
   },[])
 
   return (
+    <View>
     <ScrollView 
     style={styles.container}
     showsVerticalScrollIndicator={false}
@@ -104,6 +106,8 @@ const CalendarHome = () => {
 
       </View>
     </ScrollView>
+    <GeneralAddMenu />
+    </View>
   );
 }
 

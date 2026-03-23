@@ -3,11 +3,16 @@ import React, {useEffect, useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { styles as fStyles } from './NotesHome';
-import { colorEventTags as notesColors } from '../(CalendarStack)/AddCalendarEvent';
+import { colorEventTags as notesColors} from '../(CalendarStack)/AddCalendarEvent';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import SerifText from '@/components/SerifText';
 import Header from '@/components/LayoutComponents/Header';
 
+interface Notes{
+    title:string,
+    date:string,
+    preview:string
+}
 const sampleNotes =[ 
     // the Preview will be capped at a certain length
   {
@@ -52,20 +57,15 @@ const sampleNotes =[
   }
 ]
 
-interface Notes{
-    title:string,
-    date:string,
-    preview:string
-}
 
 const NotesFolder = () => {
     const router = useRouter();
     const { folderId, folderName } = useLocalSearchParams();
 
-    useEffect(() => {
-        // grab all notes in the db in this folder
-        setNoteCollection([])
-    }, [folderId])
+    // useEffect(() => {
+    //     grab all notes in the db in this folder
+    //     setNoteCollection([])
+    // }, [folderId])
 
     const [noteCollection, setNoteCollection] = useState<Notes[]>([])
 
@@ -75,7 +75,7 @@ const NotesFolder = () => {
         <ScrollView style={{paddingVertical:16}}>
             {/**Notes */}
             <View>
-                {noteCollection.length === 0 ? (       
+                {sampleNotes.length === 0 ? (    //TODO: Change this once to noteCollection once impleplent backend    
                     <View style={styles.emptyScreen}>  
                         <SerifText style={{fontSize:24, opacity:0.4}}>No Notes</SerifText>
                     </View>
