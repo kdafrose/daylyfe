@@ -50,6 +50,7 @@ const BudgetHome = () => {
   const budget = 250
   const [total, setTotal] = useState(0)
   const [remaining, setRemaining] = useState(budget);
+  const [currentDay, setCurrentDay] = useState(new Date());
 
   //open modals
   const [openAddItem, setOpenAddItem] = useState(false);
@@ -74,6 +75,7 @@ const BudgetHome = () => {
     setAllCategories(formattedCategories)
     setTotal(totalCat)
     setRemaining(prev => prev - totalCat)
+    console.log(currentDay)
   },[])
 
   return (
@@ -82,14 +84,22 @@ const BudgetHome = () => {
       <ScrollView >
         {/**Date */}
         <View style={styles.dateRow}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => {
+            const nextDay = new Date(currentDay)
+            nextDay.setDate(currentDay.getDate() - 1)
+            setCurrentDay(nextDay)
+          }}>
             <FontAwesomeIcon 
             icon={faAngleLeft}
             size={25}
             />
           </TouchableOpacity>
-          <SerifText style={{fontSize:24}}>April 12, 2026</SerifText>
-          <TouchableOpacity>
+          <SerifText style={{fontSize:24}}>{currentDay.toDateString()}</SerifText>
+          <TouchableOpacity onPress={() => {
+            const nextDay = new Date(currentDay)
+            nextDay.setDate(currentDay.getDate() + 1)
+            setCurrentDay(nextDay)
+          }}>
             <FontAwesomeIcon 
             icon={faAngleRight}
             size={25}

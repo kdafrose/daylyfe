@@ -104,7 +104,7 @@ const BudgetCategories:FC<BudgetCategoriesProps> = ({categoryName, mainBgColor, 
                                 <SerifText style={styles.itemsText}>${item.price}</SerifText>
                                 <TouchableOpacity
                                 onPress={() => {
-
+                                    
                                 }}
                                 >
                                 <FontAwesomeIcon icon={faX} size={10} color='#8A94A6'/>

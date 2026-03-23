@@ -23,7 +23,7 @@ const AddCategory = ({setCloseAddCategory}:AddCategoryProps) => {
     if (newIcon.length <= 2) { // emojis sometimes count as 2 chars
       setCategoryIcon(newIcon);
     }
-  };
+  }
     //modals
     const [openEmojiPicker, setOpenEmojiPicker] = useState(false)
 
