@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text,TouchableOpacity, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import SerifText from "@/components/SerifText";
 import DrawerHeader from "@/components/LayoutComponents/DrawerHeader";
@@ -11,6 +11,7 @@ import ScreenLayout from "@/components/LayoutComponents/ScreenLayout";
 import GeneralAddMenu from "@/components/LayoutComponents/GeneralAddMenu";
 import { styles as eventStyles } from "./(CalendarStack)/AddCalendarEvent";
 import { useEffect } from "react";
+import { router } from "expo-router";
 
 
 const sampleSched = [
@@ -64,14 +65,23 @@ export default function index() {
           </View>
           {/**Todays Budget */}
           {/* <SerifText style={eventStyles.titleStyle}>Budget</SerifText> */}
-          <View style={styles.budgetBox}>
-            <DailyBudgetTracker 
-            budget={50}
-            total={36}
-            remaining={50-36}
-            progress={72}
-            />
-          </View>
+          <TouchableOpacity onPress={() => {
+            router.push('/BudgetHome')
+          }}>
+            <View style={styles.budgetBox}>
+              {/* <TouchableOpacity>
+                <View>
+                  <SerifText>Go to Budget</SerifText>
+                </View>
+              </TouchableOpacity> */}
+              <DailyBudgetTracker 
+              budget={50}
+              total={36}
+              remaining={50-36}
+              progress={72}
+              />
+            </View>
+          </TouchableOpacity>
           {/**Pinned Notes */}
           <View>
             <SerifText style={eventStyles.titleStyle}>Pinned Notes</SerifText>

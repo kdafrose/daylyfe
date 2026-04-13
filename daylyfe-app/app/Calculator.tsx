@@ -149,9 +149,10 @@ const Calculator = () => {
     <ScreenLayout>
       <DrawerHeader title='' backgroundColorProp='' paddingProp={24} paddingLeftProp={0} />
 
+      <View style={{flex:1}}>
       {/* Display */}
       <View style={styles.calculateBox}>
-        <View style={[styles.answersBox, { height: 220 }]}>
+        <View style={[styles.answersBox, { height: 110 }]}>
           <SerifText style={styles.answers}>{typedEquation || '0'}</SerifText>
         </View>
       </View>
@@ -212,7 +213,7 @@ const Calculator = () => {
         </View>
 
         {/* Row 5: %  0  . */}
-        <View style={[styles.buttonsRow, { justifyContent: 'flex-start', marginLeft: 26, bottom: 72 }]}>
+        <View style={[styles.buttonsRow, {bottom: 72}]}>
           <TouchableOpacity style={styles.numberButtonSize} onPress={handlePercent}>
             <FontAwesome6 name='percent' size={30} color='white' />
           </TouchableOpacity>
@@ -222,7 +223,10 @@ const Calculator = () => {
           <TouchableOpacity style={[styles.numberButtonSize, { opacity: 0.6 }]} onPress={() => handleDigit('.')}>
             <SerifText style={styles.number}>.</SerifText>
           </TouchableOpacity>
+          <View style={{width: 72,height: 58,}}></View>
         </View>
+
+      </View>
 
       </View>
     </ScreenLayout>
@@ -240,9 +244,14 @@ const styles = StyleSheet.create({
     fontSize: 32,
     color: '#000000'
   },
+  calculateBox: {
+    padding: 32,
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    flex:2
+},
   wholeButtonBox: {
-    flex: 1,
-    gap: 15
+    gap: 15,
   },
   numberButtonSize: {
     width: 72,
@@ -265,18 +274,12 @@ const styles = StyleSheet.create({
     gap: 20,
     justifyContent: 'center'
   },
-  calculateBox: {
-    height: 340,
-    padding: 24,
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end'
-  },
   answers: {
     fontSize: 40
   },
   answersBox: {
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
-    width: 355
+    width: 355,
   }
 })

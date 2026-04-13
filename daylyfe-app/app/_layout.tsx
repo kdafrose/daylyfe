@@ -7,23 +7,24 @@ import { CommonActions } from '@react-navigation/native';
 
 export default function RootLayout() {
   {/**loading the fonts */}
+  
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(true)
   const [fontsLoaded] = useFonts({
-      "DMSerifDisplay-Regular": require("../assets/fonts/DMSerifDisplay-Regular.ttf"),
-    });
-
+    "DMSerifDisplay-Regular": require("../assets/fonts/DMSerifDisplay-Regular.ttf"),
+  });
   const router = useRouter();
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(false)
-
+  
    // Redirect once auth state is known and fonts are loaded
   useEffect(() => {
     if (!fontsLoaded || isAuthenticated === null) return
- 
     if (isAuthenticated) {
       router.replace('/')          // go to homepage
     } else {
       router.replace('/Signin')    // go to sign in
     }
   }, [isAuthenticated, fontsLoaded])
+
+  if (!fontsLoaded) return null;
 
     return (
       <Drawer
