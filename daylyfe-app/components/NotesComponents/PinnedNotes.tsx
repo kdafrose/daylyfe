@@ -40,10 +40,10 @@ const PinnedNotes = () => {
   }
   return (
     <View>
-      <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+      <View style={{flexDirection:'row', flexWrap:'wrap',justifyContent:'space-evenly'}}>
         {samplePinnedNotes.map((item, index) => (
         <TouchableOpacity 
-        style={{gap:5, marginRight:6}}
+        style={{gap:6, marginRight:6}}
         key={index}
         onPress={() => {
             goToNote(index, item.notesTitle)

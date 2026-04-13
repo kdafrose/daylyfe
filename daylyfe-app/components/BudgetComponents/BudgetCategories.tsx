@@ -127,7 +127,7 @@ const BudgetCategories:FC<BudgetCategoriesProps> = ({categoryName, mainBgColor, 
 
 const styles = StyleSheet.create({
     outerBox:{
-        width:360,
+        width:'100%',
         height:'auto',
         borderRadius:20,
         paddingVertical:12,
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     },
     itemsBox:{
         backgroundColor:'#FFFFFF',
-        width:340,
+        width:'90%',
         height:'auto',
         borderRadius:15,
     },
