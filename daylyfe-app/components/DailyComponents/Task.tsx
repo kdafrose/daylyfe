@@ -60,7 +60,7 @@ export default Task
 
 const styles = StyleSheet.create({
     taskContainer:{
-        width:300,
+        width:'82%',
         paddingBottom:8,
         paddingRight:18,
         marginHorizontal:20,

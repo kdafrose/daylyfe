@@ -15,14 +15,14 @@ export default function RootLayout() {
   const router = useRouter();
   
    // Redirect once auth state is known and fonts are loaded
-  useEffect(() => {
-    if (!fontsLoaded || isAuthenticated === null) return
-    if (isAuthenticated) {
-      router.replace('/')          // go to homepage
-    } else {
-      router.replace('/Signin')    // go to sign in
-    }
-  }, [isAuthenticated, fontsLoaded])
+  // useEffect(() => {
+  //   if (!fontsLoaded || isAuthenticated === null) return
+  //   if (isAuthenticated) {
+  //     router.replace('/')          // go to homepage
+  //   } else {
+  //     router.replace('/Signin')    // go to sign in
+  //   }
+  // }, [isAuthenticated, fontsLoaded])
 
   if (!fontsLoaded) return null;
 

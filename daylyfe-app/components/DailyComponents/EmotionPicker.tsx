@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         backgroundColor:'white',
         borderRadius:20,
         top:180,
-        left:50,
+        left:60,
         width:320,
         padding:8
     },

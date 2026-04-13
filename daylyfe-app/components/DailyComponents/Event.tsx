@@ -81,7 +81,9 @@ const Event:FC<EventProps> = ({eventTitle, time, notes, color, taskNum}) => {
             <View style={styles.EventTitleSection}>
                 <SerifText style={{fontSize:18}}>{eventTitle}</SerifText>
                 <SerifText style={styles.time}>{time}</SerifText>
-                <SerifText style={styles.notesBox}>{notes}</SerifText>
+                <View style={styles.notesBox}>
+                    <SerifText style={{fontSize:14}}>{notes}</SerifText> 
+                </View>
             </View>
             <View style={{flexDirection:'row', gap:24}}>
                 <TouchableOpacity 
@@ -211,9 +213,8 @@ const styles = StyleSheet.create({
         color:'#8A94A6',
         fontSize:15
     }, 
-    notesBox:{
-        fontSize:14,
-        width:300
+    notesBox: {
+        width:'92%'
     },
     checkBox:{
         width:15,
