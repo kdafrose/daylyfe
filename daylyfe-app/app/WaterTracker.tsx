@@ -34,6 +34,8 @@ const WaterTracker = () => {
   const [chosenAmount, setChosenAmount] = useState(0);
   const [progress, setProgress] = useState(0);
 
+  const [cupSize, setCupSize] = useState({ width: 0, height: 0 });
+
   // useEffect(() => {
     //TODO: Grab from the backend..
   // })
@@ -47,12 +49,17 @@ const WaterTracker = () => {
       <DrawerHeader title="Water Tracker" backgroundColorProp='' paddingProp={24} paddingLeftProp={0} />
       {/** Cup SVG */}
       <View style={styles.cupContainer}>
-        <WaterCup progress={progress}/>
-        <View style={styles.overlay}>
-          <WaterFace progress={progress} />
-          <SerifText style={styles.textBig}>{progress.toFixed(2)}%</SerifText>
+        <View onLayout={(e) => setCupSize(e.nativeEvent.layout)}>
+            <WaterCup progress={progress}/>
         </View>
-      </View>
+        <View style={[styles.overlay, {
+            width: cupSize.width,
+            height: cupSize.height,
+        }]}>
+            <WaterFace progress={progress} />
+            <SerifText style={styles.textBig}>{progress.toFixed(2)}%</SerifText>
+        </View>
+    </View>
     {/** Water Tracker Board */}
       <View style={styles.trackerBoard}>
         <View style={{alignItems:'center'}}>
@@ -140,13 +147,13 @@ export default WaterTracker
 const styles = StyleSheet.create({
   cupContainer:{
     alignItems:'center',
+    position: 'relative',
   },
-  overlay:{
+overlay:{
     position:'absolute',
-    alignItems:'center',
-    right:120,
-    bottom:100,
-  },
+    justifyContent: 'center',   // 👈 centers vertically
+    alignItems: 'center',       // 👈 centers horizontally
+},
   trackerBoard:{
     flexDirection:'row',
     marginHorizontal:48,
